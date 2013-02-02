@@ -16,7 +16,7 @@ setup(name='akorn_search',
       url='',
       license='',
       packages=find_packages(exclude=['ez_setup']),
-      namespace_packages=['akorn', 'scrapers'],
+      namespace_packages=['akorn'],
       include_package_data=True,
       zip_safe=False,
       install_requires=[
