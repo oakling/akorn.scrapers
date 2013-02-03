@@ -1,8 +1,8 @@
 from lxml import html
 
-from lib.scrapers.journals.utils import get_meta
-from lib.scrapers.journals.utils import get_meta_list
-from lib.scrapers.journals.base import BaseScraper
+from akorn.scrapers.journals.utils import get_meta
+from akorn.scrapers.journals.utils import get_meta_list
+from akorn.scrapers.journals.base import BaseScraper
 
 SCRAPER_DOMAINS = ['muse.jhu.edu',]
 
@@ -27,8 +27,6 @@ class ScraperJhu(BaseScraper):
         elements = tree.cssselect('div.article .title a')
         for element in elements:
              if element.text_content().strip()[:15] != 'Index to Volume':
-                 print len(article_list)
-                 print element.text_content().strip()[:15]
                  article_list.append(element)
         return article_list
 

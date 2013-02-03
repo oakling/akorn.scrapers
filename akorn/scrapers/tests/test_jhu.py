@@ -1,13 +1,14 @@
 import unittest
 import os
 
-from akorn_search.lib.scrapers.journals.scrape_jhu import ScraperJhu
-from akorn_search.lib.scrapers.journals.router import discover_scrapers
+from akorn.scrapers.journals.scrape_jhu import ScraperJhu
+from akorn.scrapers.journals.router import discover_scrapers
 
 class JhuScraperTest(unittest.TestCase):
 
     def test_scraper_added(self):
         scrapers = discover_scrapers()
+        assert 'muse.jhu.edu' in scrapers[1].keys()
 
     def test_journal(self):
         scraper = ScraperJhu()
