@@ -2,6 +2,7 @@ from lxml import html
 
 from akorn.scrapers.journals.utils import get_meta
 from akorn.scrapers.journals.utils import get_meta_list
+from akorn.scrapers.journals.utils import get_tree
 from akorn.scrapers.journals.base import BaseScraper
 
 SCRAPER_DOMAINS = ['muse.jhu.edu',]
@@ -50,4 +51,11 @@ class ScraperJhu(BaseScraper):
         article['citation']['year'] = ''
         article['ids'] = ''
         return article
+
+def scrape(abstract_url):
+    """Scrape an article level url and return an article dict"""
+    tree, urls, page_text = utils.get_tree(abstract_url)
+    scraper = ScraperJhu()
+    article = scraper.scrape_article(page_text)
+    return article
 
