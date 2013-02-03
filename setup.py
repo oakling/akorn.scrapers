@@ -3,7 +3,7 @@ import os
 
 version = open(os.path.join("akorn", "scrapers", "version.txt")).read().strip()
 
-setup(name='akorn_search',
+setup(name='akorn.scrapers',
       version=version,
       description="",
       classifiers=[
