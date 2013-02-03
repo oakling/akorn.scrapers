@@ -1,0 +1,11 @@
+# Exclude the egg info folder, as this is dynamically generated
+akorn.scrapers.egg-info
+
+# Exclude compiled files
+*.pyc
+
+# Exclude Mac files
+.DS_Store
+
+*.py~
+
