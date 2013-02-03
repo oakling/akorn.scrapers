@@ -3,9 +3,10 @@ import urllib2
 import re
 import lxml.html
 import urlparse
-import lib.scrapers.journals.utils as utils
 import datetime
 import time
+
+from akorn.scrapers.journals import utils
 
 # Scaper metadata
 SCRAPER_DOMAINS = ['pra.aps.org',

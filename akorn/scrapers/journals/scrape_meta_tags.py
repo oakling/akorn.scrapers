@@ -1,7 +1,8 @@
 import sys
-from lib.scrapers.journals.utils import get_tree, make_blank_article, get_meta, get_meta_list, make_datestamp
 import time
 from dateutil.parser import parse as parse_date
+
+from akorn.scrapers.journals.utils import get_tree, make_blank_article, get_meta, get_meta_list, make_datestamp
 
 #TODO bepress
 

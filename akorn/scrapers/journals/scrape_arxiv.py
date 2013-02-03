@@ -3,7 +3,7 @@ import re
 import urlparse
 import sys
 
-from lib.scrapers.journals.utils import get_response_chain
+from akorn.scrapers.journals.utils import get_response_chain
 
 #SCRAPER_DOMAINS = ['www.arxiv.org','arxiv.org']
 

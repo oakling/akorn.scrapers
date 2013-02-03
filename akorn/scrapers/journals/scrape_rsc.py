@@ -1,6 +1,7 @@
 import sys
 import lxml.html
-from lib.scrapers.journals.utils import make_blank_article, get_tree, get_meta, get_meta_list, make_datestamp
+
+from akorn.scrapers.journals.utils import make_blank_article, get_tree, get_meta, get_meta_list, make_datestamp
 
 SCRAPER_DOMAINS = ['pubs.rsc.org',]
 

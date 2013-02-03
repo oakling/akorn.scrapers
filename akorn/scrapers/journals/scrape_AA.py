@@ -1,9 +1,10 @@
 import sys
 import lxml.html
-import lib.scrapers.journals.utils as utils
 import urllib2
 import time
 import datetime
+
+from akorn.scrapers.journals import utils
 
 SCRAPER_MODULES = ['www.aanda.org',]
 

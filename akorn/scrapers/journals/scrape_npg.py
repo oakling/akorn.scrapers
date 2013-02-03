@@ -3,9 +3,10 @@ import urllib2
 import lxml.html
 import urlparse
 import gzip
-import lib.scrapers.journals.utils as utils
-from lib.scrapers.journals.utils import make_blank_article, make_datestamp, get_meta, get_meta_list
 from StringIO import StringIO
+
+from akorn.scrapers.journals import utils
+from akorn.scrapers.journals.utils import make_blank_article, make_datestamp, get_meta, get_meta_list
 
 SCRAPER_DOMAINS = ['www.nature.com',]
 

@@ -1,11 +1,11 @@
-import lib.scrapers.journals.scrape_meta_tags as smt
 import sys
-import lib.scrapers.journals.utils as utils
 import time
 from dateutil.parser import parse as parse_date
 import lxml.html
 import re
 
+from akorn.scrapers.journals import utils
+import akorn.scrapers.journals.scrape_meta_tags as smt
 
 SCRAPER_DOMAINS = ['http://www.cell.com/home']
 

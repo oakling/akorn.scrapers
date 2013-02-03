@@ -1,6 +1,7 @@
 import scrape_meta_tags as s
-from comm import *
-from utils import *
+
+from akorn.scrapers.journals.comm import *
+from akorn.scrapers.journals.utils import *
 
 #Current Journals:
 #Proceedings of the National Academy of Sciences
