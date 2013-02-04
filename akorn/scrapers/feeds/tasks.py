@@ -1,6 +1,6 @@
 from celery.task import task
-from lib.scrapers.journals.tasks import scrape_journal
-from lib.scrapers.feeds import feed_handlers
+from akorn.scrapers.journals.tasks import scrape_journal
+from akorn.scrapers.feeds import feed_handlers
 import feedparser
 from couch import db_store
 

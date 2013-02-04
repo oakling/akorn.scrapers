@@ -95,9 +95,9 @@ def resolve_and_scrape(url):
    
       if scraper_module is None: 
           # default to meta tags
-          scraper_module = load_module('lib.scrapers.journals.scrape_meta_tags')
+          scraper_module = load_module('akorn.scrapers.journals.scrape_meta_tags')
 
-    module_path = "lib.scrapers.journals." + scraper_module.__name__
+    module_path = "akorn.scrapers.journals." + scraper_module.__name__
 
     article = scraper_module.scrape(url)
     
