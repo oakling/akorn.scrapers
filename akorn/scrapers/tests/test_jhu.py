@@ -2,7 +2,7 @@ import unittest
 import os
 
 from akorn.scrapers.journals.scrape_jhu import ScraperJhu
-from akorn.scrapers.journals.router import discover_scrapers
+from akorn.celery.scrapers.router import discover_scrapers
 
 class JhuScraperTest(unittest.TestCase):
 

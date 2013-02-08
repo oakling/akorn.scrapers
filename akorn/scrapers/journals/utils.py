@@ -39,6 +39,9 @@ class Ignore401Handler(urllib2.BaseHandler):
   def http_error_403(self, req, fp, code, msg, hdrs):
     return fp
 
+def get_scrapers_folder():
+    return os.path.dirname(__file__)
+
 def get_response_chain(req):
   urls = []
   cookiejar = cookielib.CookieJar()
@@ -105,8 +108,6 @@ def make_blank_article():
     article['citation'] = { 'journal':None, 'volume': None, 'year': None, 'page': None, }
 
     return article
-    
-
 
 if __name__ == "__main__":
   print resolve_and_scrape(sys.argv[1])
