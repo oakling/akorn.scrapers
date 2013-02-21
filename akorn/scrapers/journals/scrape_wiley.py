@@ -3,7 +3,7 @@ import lxml.html
 import time
 import datetime
 
-from akorn.scrapers.journals.utils import get_tree, get_meta, get_meta_list, make_blank_article
+from akorn.scrapers.journals.utils import get_tree, get_meta, get_meta_list, make_blank_article, make_datestamp
 
 SCRAPER_DOMAINS = ['onlinelibrary.wiley.com',]
 
@@ -15,7 +15,6 @@ SCRAPER_DOMAINS = ['onlinelibrary.wiley.com',]
 # Journal is given by full title rather than abbreviation
 
 #JOURNALS:
-#Monthly Notices of the Royal Astronomical Society
 #Seems to work for any on Wiley Online webpages
 
 #WEBSITES:

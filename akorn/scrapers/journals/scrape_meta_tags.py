@@ -2,6 +2,8 @@ import sys
 import time
 from dateutil.parser import parse as parse_date
 
+from utils import ScraperNotFound
+
 from akorn.scrapers.journals.utils import get_tree, make_blank_article, get_meta, get_meta_list, make_datestamp
 
 #TODO bepress
