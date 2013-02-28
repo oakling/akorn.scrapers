@@ -6,7 +6,7 @@ import datetime
 
 from akorn.scrapers.journals import utils
 
-SCRAPER_MODULES = ['www.aanda.org',]
+SCRAPER_DOMAINS = ['www.aanda.org',]
 
 #DESCRIPTION:
 # Scrapes an article from Astronomy & Astrophysics RSS feeds:

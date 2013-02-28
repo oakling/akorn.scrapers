@@ -2,7 +2,7 @@ import sys
 import lxml.html
 from akorn.scrapers.journals.utils import get_tree, make_blank_article, get_meta, get_meta_list, make_datestamp
 
-SCRAPER_MODULES = ['iopscience.iop.org',]
+SCRAPER_DOMAINS = ['iopscience.iop.org',]
 
 #DESCRIPTION:
 # Scrapes an article from IOP Science (Full list: http://iopscience.iop.org/journals)
