@@ -13,7 +13,7 @@ SCRAPER_DOMAINS = ['pubs.acs.org',]
 def scrape(abstract_url):
   tree, urls, page_text = utils.get_tree(abstract_url) 
 
-  article = make_blank_article()
+  article = utils.make_blank_article()
   article['scraper'] = 'acs'
   article['source_urls'] = [uri for _, uri in urls]
 
@@ -51,7 +51,7 @@ def scrape(abstract_url):
 
   date = utils.get_meta('dc.Date', tree).split()
   if date:
-      article['date_published'] = utils.make_datestamp(date[1][:-1], months[date[0]], date[2])
+      article['date_published'] = utils.make_datestamp(date[1][:-1], utils.months[date[0]], date[2])
       article['citation']['year'] = date[2]
 
 

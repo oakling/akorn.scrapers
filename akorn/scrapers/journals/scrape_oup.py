@@ -2,10 +2,12 @@ import sys,os.path
 import akorn.scrapers.journals.utils
 import datetime
 import time
+
+
 #Current Journals:
 
 SCRAPER_DOMAINS = ['oxfordjournals.org',]
-
+    
 def scrape(abstract_url):
 
     tree, urls, page_text = akorn.scrapers.journals.utils.get_tree(abstract_url) 

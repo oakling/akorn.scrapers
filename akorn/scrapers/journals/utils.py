@@ -9,6 +9,8 @@ import lxml.html
 import datetime
 import time
 
+#this is the helper function file and supercedes comm.py
+months = {'January':1, 'February':2, 'March':3, 'April':4, 'May':5, 'June':6, 'July':7, 'August':8, 'September':9, 'October':10, 'November':11, 'December':12}
 headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebKit/534.50 (KHTML, like Gecko) Version/5.1 Safari/534.50',} 
 
 class ScraperNotFound(Exception):

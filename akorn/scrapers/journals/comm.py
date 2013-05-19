@@ -1,3 +1,5 @@
+#do not use this as all functions are now in utils
+#this is deprecated
 import lxml.html
 import urllib2
 import datetime

@@ -54,7 +54,7 @@ class ScraperJhu(BaseScraper):
 
 def scrape(abstract_url):
     """Scrape an article level url and return an article dict"""
-    tree, urls, page_text = utils.get_tree(abstract_url)
+    tree, urls, page_text = get_tree(abstract_url)
     scraper = ScraperJhu()
     article = scraper.scrape_article(page_text)
     return article

@@ -44,12 +44,12 @@ import test_data
 
     #self.assertEqual(article, test_data.arxiv_1)
 
-class TestOUP(unittest.TestCase):
-  def test_oup(self):
-    article = scrape_oup.scrape('http://iwc.oxfordjournals.org/content/25/3/199.short?rss=1')
+#class TestOUP(unittest.TestCase):
+  #def test_oup(self):
+    #article = scrape_oup.scrape('http://iwc.oxfordjournals.org/content/25/3/199.short?rss=1')
 
-    self.maxDiff=None
-    self.assertEqual(article, test_data.oup_1)
+    #self.maxDiff=None
+    #self.assertEqual(article, test_data.oup_1)
 
 if __name__ == '__main__':
     unittest.main()
