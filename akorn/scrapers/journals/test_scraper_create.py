@@ -90,11 +90,28 @@ import scrape_pnas,scrape_atmos,scrape_jhu, scrape_oup2
     #article = scrape_oup.scrape('http://iwc.oxfordjournals.org/content/25/3/199.short?rss=1')
 
     #self.assertIsNotNone(article)
+    
 class TestOUP2(unittest.TestCase):
   def test_oup2(self):
     article = scrape_oup2.scrape('http://iwc.oxfordjournals.org/content/25/3/199.short?rss=1','/home/jo/sites/akorn_test_instance/src/akorn.scrapers/akorn/scrapers/journals/Data/OUP.xml')
 
     self.assertIsNotNone(article)
+
+class TestOUPCompare(unittest.TestCase):
+  def test_oupcompare(self):
+    articleOld = scrape_oup.scrape('http://iwc.oxfordjournals.org/content/25/3/199.short?rss=1')
+    articleNew = scrape_oup2.scrape('http://iwc.oxfordjournals.org/content/25/3/199.short?rss=1','/home/jo/sites/akorn_test_instance/src/akorn.scrapers/akorn/scrapers/journals/Data/OUP.xml')
+    self.maxDiff=None
+    self.assertEqual(articleOld['scraper'], articleNew['scraper'])
+    self.assertEqual(articleOld['source_urls'], articleNew['source_urls'])
+    self.assertEqual(articleOld['publisher'], articleNew['publisher'])
+    self.assertEqual(articleOld['title'], articleNew['title'])
+    self.assertEqual(articleOld['author_names'], articleNew['author_names'])
+    self.assertEqual(articleOld['ids'], articleNew['ids'])
+    self.assertEqual(articleOld['date'], articleNew['date'])
+
+    self.assertEqual(articleOld['journal'], articleNew['journal'])
+    self.assertEqual(articleOld['citation'], articleNew['citation'])
 
 #class TestAtmos(unittest.TestCase):
  ##xpath fails here

@@ -1,20 +1,20 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<scraper value='OUP'/>
-<SCRAPER_DOMAINS value = 'oxfordjournals.org' />
+<?xml version="1.0"?>
+<scraper value="OUP">
+<SCRAPER_DOMAINS value = "oxfordjournals.org"/>
 <journal>
-<publisher metaTag='True' metaList='False' xPathTag='False' value='DC.Publisher'/>
-<title     metaTag='True' metaList='False' xPathTag='False' value='DC.Title'/>
-<author_names metaTag='False' metaList='True' xPathTag='False' value='DC.Contributor'/>
-<abstract metaTag='False' metaList='False' xPathTag='True' value="//div[@class='section abstract']/p"/>
-<journal metaTag='True' metaList='False' xPathTag='False' value='citation_journal_title'/>
-<date metaTag='True' metaList='False' xPathTag='False' value='citation_doi'/>
+<publisher metaTag="True" metaList="False" xPathTag="False" value="DC.Publisher"/>
+<date_journal metaTag="True" metaList="False" xPathTag="False" value="DC.Date"/>
+<title metaTag="True" metaList="False" xPathTag="False" value="DC.Title"/>
+<author_names metaTag="False" metaList="True" xPathTag="False" value="DC.Contributor"/>
+<journal metaTag="True" metaList="False" xPathTag="False" value="citation_journal_title"/>
+<abstract metaTag="True" metaList="False" xPathTag="True" value="//div[@class='section abstract']/p"/>
 <citation>
-	<journal metaTag='True' metaList='False' xPathTag='False' value='citation_journal_title'/>
-	<volume metaTag='True' metaList='False' xPathTag='False' value='citation_volume'/>
-	<page metaTag='True' metaList='False' xPathTag='False' value='citation_firstpage'/>
-	<year metaTag='True' metaList='False' xPathTag='False' value='citation_lastpage'/>
-	<date metaTag='True' metaList='False' xPathTag='False' value='citation_date'/>
-	<ids metaTag='True' metaList='False' xPathTag='False' value='citation_doi'/>
+	<journal metaTag="True" metaList="False" xPathTag="False" value="citation_journal_title"/>
+	<volume metaTag="True" metaList="False" xPathTag="False" value="citation_volume"/>
+	<page_first metaTag="True" metaList="False" xPathTag="False" value="citation_firstpage"/>
+	<page_last metaTag="True" metaList="False" xPathTag="False" value="citation_lastpage"/>
+	<date metaTag="True" metaList="False" xPathTag="False" value="citation_date"/>
+	<ids metaTag="True" metaList="False" xPathTag="False" value="citation_doi"/>
 </citation>
-</journal>  
-
+</journal>
+</scraper>
