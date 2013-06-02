@@ -109,6 +109,19 @@ def make_blank_article():
 
     return article
 
+def iterate_with_parent(elem):
+    """
+    Generator that walks subpage returning each element and it's parent
+    """
+    stack = []
+    while 1:
+        for child in reversed(elem):
+            stack.append((child, elem))
+        if not stack:
+            return
+        elem, parent = stack.pop()
+        yield elem, parent
+
 if __name__ == "__main__":
   print resolve_and_scrape(sys.argv[1])
 
