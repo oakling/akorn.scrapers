@@ -20,6 +20,7 @@ class BaseScraper():
      
     def get_data_item (self,configName,configTree,pageTree):
      #most occasions these appear to be meta tags
+
         if not (configTree.xpath("//%s/@xPathTag" %configName)[0]=='True'):
             #check for meta tags and meta lists
             if (configTree.xpath("//%s/@metaTag" %configName)[0]=='True'):
@@ -52,28 +53,53 @@ class BaseScraper():
             return None
         journalTree, urls, page_text = utils.get_tree(abstract_url)
         #create a blank article    
-        article = self.make_blank_article()
+        #article = self.make_blank_article()
         #get the xml config data
         configPageText = self.get_config_data_file(fileName)
-        #now fill in the blanks if they are available
-        #decide whether or when we fail
-        article['scraper'] = self.get_config_data_value('scraper', configPageText)      
+        article = {}
         article['source_urls'] =[uri for _, uri in urls]
-        #eventually split out all the tags as separate methods so they can be overridden
-        article['publisher'] = self.get_data_item('publisher', configPageText,journalTree)
-        article['title'] = self.get_data_item('title', configPageText,journalTree)
-        article['author_names'] = self.get_data_item('author_names', configPageText,journalTree)
-        article['abstract'] =  self.get_data_item('abstract', configPageText,journalTree)
-        article['journal'] = self.get_data_item('journal', configPageText,journalTree)
-        #think about the best way to do the dates, what if more than one? Probably always overridden
-        year,month,day =  self.get_data_item('date_journal', configPageText,journalTree).split('-')
+        for node, parent in utils.iterate_with_parent(configPageText.find('journal')):
+            if (len(node)==0):
+                 article[node.tag]=node.tag
+                #article[node.tag]=self.get_data_item(node.tag, configPageText,journalTree)
+            else:  
+               if node.tag in article:
+				   import pdb;pdb.set_trace();
+				   article[parent.tag][node.tag]=node.tag
+               else:
+				   article[node.tag]={}
+               
+               
+                #article[parent.tag][node.tag] = self.get_data_item(node.tag, configPageText,journalTree)   
+        import pdb;pdb.set_trace();
+        article['scraper'] = self.get_config_data_value('scraper', configPageText)   
+        #over ride the date and ids
+        ##think about the best way to do the dates, what if more than one? Probably always overridden
+        year,month,day =  article['date_journal'].split('-')
         new_date =  utils.make_datestamp(day, month, year)
         article['date'] = new_date
-        article['citation']['journal'] = self.get_data_item('citation/journal', configPageText,journalTree)
-        article['citation']['volume'] = self.get_data_item('citation/volume', configPageText,journalTree)
-        article['citation']['page_first'] = self.get_data_item('citation/page_first', configPageText,journalTree)
-        article['citation']['page_last'] = self.get_data_item('citation/page_last', configPageText,journalTree)
-        article['citation']['date'] = self.get_data_item('citation/date', configPageText,journalTree)
-        article['ids'] ={'doi': self.get_data_item('ids', configPageText,journalTree)}
+        article['ids'] ={'doi': article ['ids_journal']} 
 
+
+        #now fill in the blanks if they are available
+        #decide whether or when we fail
+        #article['scraper'] = self.get_config_data_value('scraper', configPageText)      
+        #article['source_urls'] =[uri for _, uri in urls]
+        ##eventually split out all the tags as separate methods so they can be overridden
+        #article['publisher'] = self.get_data_item('publisher', configPageText,journalTree)
+        #article['title'] = self.get_data_item('title', configPageText,journalTree)
+        #article['author_names'] = self.get_data_item('author_names', configPageText,journalTree)
+        #article['abstract'] =  self.get_data_item('abstract', configPageText,journalTree)
+        #article['journal'] = self.get_data_item('journal', configPageText,journalTree)
+        ##think about the best way to do the dates, what if more than one? Probably always overridden
+        #year,month,day =  self.get_data_item('date_journal', configPageText,journalTree).split('-')
+        #new_date =  utils.make_datestamp(day, month, year)
+        #article['date'] = new_date
+        #article['citation']['journal'] = self.get_data_item('citation/journal', configPageText,journalTree)
+        #article['citation']['volume'] = self.get_data_item('citation/volume', configPageText,journalTree)
+        #article['citation']['page_first'] = self.get_data_item('citation/page_first', configPageText,journalTree)
+        #article['citation']['page_last'] = self.get_data_item('citation/page_last', configPageText,journalTree)
+        #article['citation']['date'] = self.get_data_item('citation/date', configPageText,journalTree)
+        #article['ids'] ={'doi': self.get_data_item('ids', configPageText,journalTree)} 
+      
         return article

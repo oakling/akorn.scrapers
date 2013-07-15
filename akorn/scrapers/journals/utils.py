@@ -113,6 +113,7 @@ def iterate_with_parent(elem):
     """
     Generator that walks subpage returning each element and it's parent
     """
+    
     stack = []
     while 1:
         for child in reversed(elem):

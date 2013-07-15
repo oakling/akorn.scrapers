@@ -14,7 +14,7 @@
 	<page_first metaTag="True" metaList="False" xPathTag="False" value="citation_firstpage"/>
 	<page_last metaTag="True" metaList="False" xPathTag="False" value="citation_lastpage"/>
 	<date metaTag="True" metaList="False" xPathTag="False" value="citation_date"/>
-	<ids metaTag="True" metaList="False" xPathTag="False" value="citation_doi"/>
+	<ids_journal metaTag="True" metaList="False" xPathTag="False" value="citation_doi"/>
 </citation>
 </journal>
 </scraper>
