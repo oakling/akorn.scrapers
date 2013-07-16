@@ -1,6 +1,6 @@
 import sys
 import lxml.html
-from akorn.scrapers.journals.utils import get_tree, make_blank_article, get_meta, get_meta_list, make_datestamp
+from akorn.scrapers.utils import get_tree, make_blank_article, get_meta, get_meta_list, make_datestamp
 
 SCRAPER_DOMAINS = ['iopscience.iop.org',]
 

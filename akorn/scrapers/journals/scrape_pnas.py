@@ -1,7 +1,6 @@
-import akorn.scrapers.journals.scrape_meta_tags as s
+from .scrape_meta_tags import scrape_tree as meta_scrape_tree
 
-#from akorn.scrapers.journals.comm import *
-from akorn.scrapers.journals.utils import *
+from akorn.scrapers.utils import *
 
 #Current Journals:
 #Proceedings of the National Academy of Sciences
@@ -15,7 +14,7 @@ def scrape(abstract_url):
 
     tree, urls, page_text = get_tree(abstract_url) 
 
-    article = s.scrape_tree(tree, urls, page_text)
+    article = meta_scrape_tree(tree, urls, page_text)
 
     #For P.R.C:A and P.R.C:B
     #For P.L.O.S

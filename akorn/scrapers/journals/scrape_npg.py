@@ -5,8 +5,8 @@ import urlparse
 import gzip
 from StringIO import StringIO
 
-from akorn.scrapers.journals import utils
-from akorn.scrapers.journals.utils import make_blank_article, make_datestamp, get_meta, get_meta_list
+from akorn.scrapers import utils
+from akorn.scrapers.utils import make_blank_article, make_datestamp, get_meta, get_meta_list
 
 SCRAPER_DOMAINS = ['www.nature.com',]
 

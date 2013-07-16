@@ -2,7 +2,7 @@ import sys
 import lxml.html
 import re
 
-from akorn.scrapers.journals.utils import get_tree, get_meta, get_meta_list, make_datestamp, make_blank_article
+from akorn.scrapers.utils import get_tree, get_meta, get_meta_list, make_datestamp, make_blank_article
 
 SCRAPER_DOMAINS = ['www.mitpressjournals.org',]
 

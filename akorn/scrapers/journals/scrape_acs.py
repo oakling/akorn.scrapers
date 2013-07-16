@@ -2,7 +2,7 @@ import sys
 import lxml.html
 import re
 
-from akorn.scrapers.journals import utils
+from akorn.scrapers import utils
 
 SCRAPER_DOMAINS = ['pubs.acs.org',]
 

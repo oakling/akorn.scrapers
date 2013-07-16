@@ -4,7 +4,7 @@ import urllib2
 import time
 import datetime
 
-from akorn.scrapers.journals import utils
+from akorn.scrapers import utils
 
 SCRAPER_DOMAINS = ['www.aanda.org',]
 

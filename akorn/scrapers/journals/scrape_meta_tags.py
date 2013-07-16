@@ -2,7 +2,7 @@ import sys
 import time
 from dateutil.parser import parse as parse_date
 
-from akorn.scrapers.journals.utils import get_tree, make_blank_article, get_meta, get_meta_list, make_datestamp, ScraperNotFound
+from akorn.scrapers.utils import get_tree, make_blank_article, get_meta, get_meta_list, make_datestamp, FailedToScrape
 
 #TODO bepress
 
@@ -110,7 +110,7 @@ def scrape(abstract_url):
   for field in NECESSARY_FIELDS:
         if field not in article or not article[field]:
             print field
-            raise ScraperNotFound
+            raise FailedToScrape
 
   return article
 

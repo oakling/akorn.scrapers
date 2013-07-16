@@ -1,5 +1,5 @@
 import sys,os.path
-import akorn.scrapers.journals.utils
+import akorn.scrapers.utils
 import datetime
 import time
 

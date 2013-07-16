@@ -6,7 +6,7 @@ import urlparse
 import datetime
 import time
 
-from akorn.scrapers.journals import utils
+from akorn.scrapers import utils
 
 # Scaper metadata
 SCRAPER_DOMAINS = ['pra.aps.org',

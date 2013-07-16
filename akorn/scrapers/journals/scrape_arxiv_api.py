@@ -4,7 +4,7 @@ import feedparser
 import time
 import re
 
-from akorn.scrapers.journals.classification import classify
+from akorn.scrapers.classification import classify
 
 SCRAPER_DOMAINS = ['www.arxiv.org','arxiv.org']
 

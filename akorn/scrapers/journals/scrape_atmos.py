@@ -1,7 +1,4 @@
-import akorn.scrapers.journals.scrape_meta_tags as s
-
-#from akorn.scrapers.journals.comm import *
-from akorn.scrapers.journals.utils import *
+from akorn.scrapers.utils import *
 
 #Current Journals:
 #Atmospheric Chemisty and Physics

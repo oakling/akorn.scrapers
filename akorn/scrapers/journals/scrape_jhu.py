@@ -1,9 +1,7 @@
 from lxml import html
 
-from akorn.scrapers.journals.utils import get_meta
-from akorn.scrapers.journals.utils import get_meta_list
-from akorn.scrapers.journals.utils import get_tree
-from akorn.scrapers.journals.base import BaseScraper
+from akorn.scrapers.utils import get_meta_list, get_tree, get_meta
+from akorn.scrapers.base import BaseScraper
 
 SCRAPER_DOMAINS = ['muse.jhu.edu',]
 

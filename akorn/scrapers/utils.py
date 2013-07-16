@@ -13,8 +13,9 @@ import time
 months = {'January':1, 'February':2, 'March':3, 'April':4, 'May':5, 'June':6, 'July':7, 'August':8, 'September':9, 'October':10, 'November':11, 'December':12}
 headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebKit/534.50 (KHTML, like Gecko) Version/5.1 Safari/534.50',} 
 
-class ScraperNotFound(Exception):
-  pass
+class FailedToScrape(Exception):
+    pass
+
 
 def resolve_article(doc, db):
   if 'merged_into' in doc:
@@ -109,20 +110,21 @@ def make_blank_article():
 
     return article
 
-def iterate_with_parent(elem):
+def iterate_with_parent(top):
     """
     Generator that walks subpage returning each element and it's parent
     """
     
     stack = []
+    elem = top
     while 1:
         for child in reversed(elem):
             stack.append((child, elem))
         if not stack:
             return
         elem, parent = stack.pop()
-        yield elem, parent
-
-if __name__ == "__main__":
-  print resolve_and_scrape(sys.argv[1])
-
+        # If parent is same as top element then return None
+        if parent == top:
+            yield elem, None
+        else:
+            yield elem, parent

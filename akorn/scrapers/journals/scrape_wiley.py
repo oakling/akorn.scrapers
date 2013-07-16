@@ -3,7 +3,7 @@ import lxml.html
 import time
 import datetime
 
-from akorn.scrapers.journals.utils import get_tree, get_meta, get_meta_list, make_blank_article, make_datestamp
+from akorn.scrapers.utils import get_tree, get_meta, get_meta_list, make_blank_article, make_datestamp
 
 SCRAPER_DOMAINS = ['onlinelibrary.wiley.com',]
 
