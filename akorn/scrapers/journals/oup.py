@@ -5,7 +5,7 @@ import time
 
 class Scraper(BaseScraper):
     # List of domains that scraper is for
-    domains = ['oxfordjournals.org']
+    domains = ['oxfordjournals.org', 'cercor.oxfordjournals.org']
     # Relative name of config file
     config = 'oup.xml'
 
