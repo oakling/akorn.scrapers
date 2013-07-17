@@ -26,17 +26,19 @@ class BaseScraper(object):
         return lxml.etree.parse(filepath)
 
     def get_value(self, node, source):
+        # Get the type of node
+        node_type = node.get('type')
         # Get the value to look in source for
-        value = node.get('value')
+        node_value = node.get('value')
         # If value is an xPath, then do xpath query on source
-        if node.get('xPathTag') == 'True':
-            xPathattribute = source.xpath(value)
-            attribute = xPathattribute[0].text_content()
-        else:
-            if node.get('metaTag') == 'True':
-                attribute = utils.get_meta(value, source)
-            else:
-                attribute = utils.get_meta_list(value, source)
+        if node_type == 'xPathTag':
+            attribute = source.xpath(node_value)[0].text_content()
+        elif node_type == 'css':
+            attribute = source.cssselect(node_value)[0].text_content()
+        elif node_type == 'metaTag':
+            attribute = utils.get_meta(node_value, source)
+        elif node_type == 'metaList':
+            attribute = utils.get_meta_list(node_value, source)
         return attribute
          
     def get_config_data_value(self,configItemName,tree):
@@ -70,7 +72,6 @@ class BaseScraper(object):
 	        else:
 		    article[parent.tag][node.tag] = value
         # Add meta data
-        article['scraper'] = self.get_config_data_value('scraper', config_data)
         article['source_urls'] = [uri for _, uri in urls]
         # Run cleaning methods over article data
         cleaned_article = self.clean(article)
