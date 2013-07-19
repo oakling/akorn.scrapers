@@ -1,6 +1,5 @@
 import sys, os
 import urlparse
-import couchdb
 import urllib2
 import classification
 import cookielib
