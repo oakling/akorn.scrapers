@@ -6,7 +6,7 @@
     <title type="metaTag" value="DC.Title" />
     <author_names type="metaList" value="DC.Contributor" />
     <journal type="metaTag" value="citation_journal_title" />
-    <abstract type="css" value="#p-3" />
+    <abstract type="css" value="div.section p" />
     <citation>
         <journal type="metaTag" value="citation_journal_title" />
         <volume type="metaTag" value="citation_volume" />
