@@ -30,15 +30,23 @@ class BaseScraper(object):
         node_type = node.get('type')
         # Get the value to look in source for
         node_value = node.get('value')
-        # If value is an xPath, then do xpath query on source
+        attribute = None
         if node_type == 'xPathTag':
-            attribute = source.xpath(node_value)[0].text_content()
+            found = source.xpath(node_value)
+            if found:
+                attribute = found[0].text_content()
         elif node_type == 'css':
-            attribute = source.cssselect(node_value)[0].text_content()
+            found = source.cssselect(node_value)
+            if found:
+                attribute = found[0].text_content()
         elif node_type == 'metaTag':
             attribute = utils.get_meta(node_value, source)
         elif node_type == 'metaList':
             attribute = utils.get_meta_list(node_value, source)
+
+        if not attribute:
+            attribute = ''
+
         return attribute
          
     def get_config_data_value(self,configItemName,tree):
