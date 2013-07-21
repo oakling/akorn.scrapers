@@ -1,4 +1,5 @@
 import unittest
+import lxml.html
 
 import base
 
@@ -32,3 +33,47 @@ class ValidBaseScraperTest(unittest.TestCase):
         scraper = NoConfigScraper()
         with self.assertRaises(base.MinimumDataFailure):
             scraper.valid({})
+
+
+class MetaTagTest(unittest.TestCase):
+    xml = """
+    <html>
+        <head>
+            <meta name="dc.title" content="First" />
+            <meta name="dc.title" content="Second" />
+            <meta name="dc.title" content="Third" />
+            <level2>
+                <meta name="dc.title" content="Too deep" />
+            </level2>
+        </head>
+        <meta name="dc.title" content="Outside head" />
+    </html>
+    """
+
+    def setUp(self):
+        self.source = lxml.html.fromstring(self.xml)
+
+    def test_no_single(self):
+        scraper = NoConfigScraper()
+        out = scraper.get_meta('dc.not_there', self.source)
+        self.assertEqual(out, None)
+
+    def test_no_many(self):
+        scraper = NoConfigScraper()
+        out = scraper.get_meta_list('dc.not_there', self.source)
+        self.assertEqual(out, None)
+
+    def test_find_single_meta(self):
+        scraper = NoConfigScraper()
+        out = scraper.get_meta('dc.title', self.source)
+        self.assertEqual(out, 'First')
+
+    def test_find_many_meta(self):
+        scraper = NoConfigScraper()
+        out = scraper.get_meta_list('dc.title', self.source)
+        self.assertEqual(out, ['First', 'Second', 'Third'])
+
+    def test_find_wrong_case(self):
+        scraper = NoConfigScraper()
+        out = scraper.get_meta('DC.TItle', self.source)
+        self.assertEqual(out, 'First')

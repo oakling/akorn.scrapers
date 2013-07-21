@@ -4,6 +4,16 @@ import utils
 
 import akorn.scrapers.settings as settings
 
+def lowercase(context, matches):
+    """
+    Return lowercased input list
+    """
+    return [bit.lower() for bit in matches]
+
+# Adding lowercase to xpath functions as lxml does not support XPath 2.0
+ns = lxml.etree.FunctionNamespace(None)
+ns['lowercase'] = lowercase
+
 
 class BadScraperConfig(Exception):
     pass
@@ -27,7 +37,22 @@ class BaseScraper(object):
 
     def __init__(self):
         self.config_data = self.get_config_data_file()
-        
+
+    get_meta_xpath = lxml.etree.XPath("./head/meta[lowercase(@name)=$name]/@content")
+
+    def get_meta(self, name, source):
+        try:
+            return self.get_meta_list(name, source)[0]
+        except (TypeError, IndexError):
+            return None
+
+    def get_meta_list(self, name, source):
+        attributes = self.get_meta_xpath(source, name=name.lower())
+        if attributes:
+            return attributes
+        else:
+            return None
+
     def get_config_data_file(self):
         try:
             # Construct path to config file
@@ -58,12 +83,9 @@ class BaseScraper(object):
             if found:
                 attribute = found[0].text_content()
         elif node_type == 'metaTag':
-            attribute = utils.get_meta(node_value, source)
+            attribute = self.get_meta(node_value, source)
         elif node_type == 'metaList':
-            attribute = utils.get_meta_list(node_value, source)
-
-        if not attribute:
-            attribute = ''
+            attribute = self.get_meta_list(node_value, source)
 
         return attribute
          
