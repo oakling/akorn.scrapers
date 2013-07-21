@@ -9,21 +9,39 @@ class BadScraperConfig(Exception):
     pass
 
 
+class MinimumDataFailure(Exception):
+    pass
+
+
 #decide whether we need the SCRAPER_DOMAIN or whether this is sorted by celery
 class BaseScraper(object):
     """Base class for a web scraper"""
 
+    required = [
+        'title',
+        'author_names',
+        'abstract',
+        'date_published',
+        'journal'
+        ]
+
     def __init__(self):
-        if not self.config:
-            raise BadScraperConfig('Scraper requires a config property')
         self.config_data = self.get_config_data_file()
         
     def get_config_data_file(self):
-        # Construct path to config file
-        filepath = os.path.join(settings.CONFIG_DIR, self.config)
-        # TODO Check for parse errors
+        try:
+            # Construct path to config file
+            filepath = os.path.join(settings.CONFIG_DIR, self.config)
+        except AttributeError:
+            raise BadScraperConfig('Scraper requires a config property')
+        except IOError:
+            raise BadScraperConfig('Cannot find config file specified')
+        try:
+            config = lxml.etree.parse(filepath)
+        except lxml.etree.ParseError:
+            raise BadScraperConfig('Parsing error in config file')
         # TODO Check config file against DTD?
-        return lxml.etree.parse(filepath)
+        return config
 
     def get_value(self, node, source):
         # Get the type of node
@@ -83,9 +101,18 @@ class BaseScraper(object):
         article['source_urls'] = [uri for _, uri in urls]
         # Run cleaning methods over article data
         cleaned_article = self.clean(article)
-        # TODO Check for minimum data returned
+        # Check that required data is returned
+        self.valid(cleaned_article)
         return cleaned_article
 
+    def valid(self, data):
+        try:
+            # Try to look up each key in the required list
+            for key in self.required:
+                data[key]
+        except KeyError:
+            raise MinimumDataFailure('Required property, {}, missing'.format(key))
+        return True
+
     def clean(self, data):
-        data['ids'] = {'doi': data['citation']['ids_journal']}
         return data
