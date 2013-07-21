@@ -1,12 +1,13 @@
 <?xml version="1.0"?>
 <scraper>
 <journal>
-    <publisher type="metaTag" value="DC.Publisher" />
-    <date_journal type="metaTag" value="DC.Date" />
     <title type="metaTag" value="DC.Title" />
+    <date_published type="metaTag" value="DC.Date" />
     <author_names type="metaList" value="DC.Contributor" />
     <journal type="metaTag" value="citation_journal_title" />
     <abstract type="css" value="div.section p" />
+
+    <publisher type="metaTag" value="DC.Publisher" />
     <citation>
         <journal type="metaTag" value="citation_journal_title" />
         <volume type="metaTag" value="citation_volume" />

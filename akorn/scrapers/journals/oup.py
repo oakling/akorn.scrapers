@@ -13,8 +13,8 @@ class Scraper(BaseScraper):
         data = super(Scraper, self).clean(data)
 
         # Add a date timestamp based on date_journal
-	date_journal_str = data.get('date_journal')
-        if date_journal_str:
-            date_journal = datetime.strptime(date_journal_str, '%Y-%m-%d')
-            data['date'] = time.mktime(date_journal.timetuple())
+        date_str = data.get('date_published')
+        if date_str:
+            date_obj = datetime.strptime(date_str, '%Y-%m-%d')
+            data['date_published'] = time.mktime(date_obj.timetuple())
         return data
