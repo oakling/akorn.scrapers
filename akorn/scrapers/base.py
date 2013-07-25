@@ -1,6 +1,8 @@
 import os
 import lxml
+import urllib2
 import utils
+import BeautifulSoup
 
 import akorn.scrapers.settings as settings
 
@@ -34,11 +36,39 @@ class BaseScraper(object):
         'date_published',
         'journal'
         ]
+    get_meta_xpath = lxml.etree.XPath("./head/meta[lowercase(@name)=$name]/@content")
 
     def __init__(self):
         self.config_data = self.get_config_data_file()
 
-    get_meta_xpath = lxml.etree.XPath("./head/meta[lowercase(@name)=$name]/@content")
+
+    def fetch_url(self, url):
+        """
+        Return tuple of urls followed and the final page grabbed
+        """
+        # Construct request
+        req = urllib2.Request(url, headers=utils.headers)
+        # Open request and follow redirects to final location of content
+        # get_response_chain returns a tuple: urls, page
+        return utils.get_response_chain(req)
+
+    def parse_page(self, content, url):
+        """
+        Return parsed content of given string
+        """
+        # Force utf-8 encoding by parser
+        utf8_parser = lxml.html.HTMLParser(encoding='utf-8')
+        # Parse the content and return resulting tree
+        return lxml.etree.HTML(content, parser=utf8_parser, base_url=url)
+
+    def get_tree(self, url):
+        """
+        Return tuple of lxml Element of given url and urls
+        followed to get to the final page.
+        """
+        urls, page = self.fetch_url(url)
+        tree = self.parse_page(page.read(), page.geturl())
+        return tree, urls
 
     def get_meta(self, name, source):
         try:
@@ -99,7 +129,7 @@ class BaseScraper(object):
 
     def scrape_article(self, abstract_url):
         """Scrape an html page which is an issue of the journal"""
-        journalTree, urls, page_text = utils.get_tree(abstract_url)
+        tree, urls = self.get_tree(abstract_url)
         # Get the xml config data
         config_data = self.config_data
         # Create the empty article dict
@@ -111,7 +141,7 @@ class BaseScraper(object):
                 article[node.tag] = {}
             else:
                 # Get the value from the source document
-                value = self.get_value(node, journalTree)
+                value = self.get_value(node, tree)
                 # If no value is found then skip
                 if not value:
                     continue
