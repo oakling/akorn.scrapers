@@ -127,3 +127,23 @@ def iterate_with_parent(top):
             yield elem, None
         else:
             yield elem, parent
+
+
+def walk_and_apply(walked_dict, func):
+    """
+    Return dict of values returned by given func when
+    applied recursivey to walked_dict
+
+    Supplied function will be passed the values walked over
+    """
+    out = {}
+    for key, item in walked_dict.items():
+        if isinstance(item, dict):
+            # Recurse if item is a dict
+            value = walk_and_apply(item, func)
+        else:
+            # Otherwise, apply the supplied function
+            value = func(item, key=key)
+        # Reconstruct keys with the looked up values
+        out[key] = value
+    return out
