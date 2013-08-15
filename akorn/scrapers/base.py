@@ -3,6 +3,7 @@ import json
 import lxml
 from lxml.cssselect import CSSSelector
 import os
+import time
 import urllib2
 
 import akorn.scrapers.utils as utils
@@ -325,7 +326,9 @@ class BaseScraper(object):
         # Walk over config, populating from article tree
         article = self.map_tree_to_config(tree, self.config)
         # Add meta data
-        article['source_urls'] = [uri for _, uri in urls]
+        article[u'source_urls'] = [uri for _, uri in urls]
+        # Add scraped datetime (as unix timestamp in seconds)
+        article[u'date_scraped'] = int(time.time())
         # Run cleaning methods over article data
         cleaned_article = self.clean(article)
         # Check that required data is returned
