@@ -47,7 +47,8 @@ class Config(object):
         'doi',
         'volume',
         'issue',
-        'pages'
+        'pages',
+        'publisher'
         ]
 
     def __init__(self, filename=None):
@@ -59,13 +60,49 @@ class Config(object):
             self.config = self.compile_config(parsed)
             self.validate(self.config)
 
+    @property
+    def allowed(self):
+        return self.required+self.optional
+
+    @property
+    def not_allowed(self):
+        allowed = self.allowed
+        return [key for key in self.config.keys() if not key in allowed]
+
+    @property
+    def unused(self):
+        """
+        Return list of allowed properties not used in the config
+        """
+        config = self.config
+        return [key for key in self.allowed if not key in config.keys()]
+
+    @property
+    def missing(self):
+        """
+        Return list of missing required properties
+        """
+        return [key for key in self.unused if key in self.required]
+
+    def check_allowed(self, config):
+        """
+        Raises BadScraperConfig if unknown properties are found
+        """
+        not_allowed = self.not_allowed
+        if not_allowed:
+            raise BadScraperConfig("Unknown properties: {}".format(', '.join(not_allowed)))
+
+    def check_required(self):
+        """
+        Raises BadScraperConfig if required properties are not found
+        """
+        missing = self.missing
+        if missing:
+            raise BadScraperConfig("Required properties: {}".format(', '.join(missing)))
+
     def validate(self, config):
-        # Check each required property against loaded config
-        for prop in self.required:
-            try:
-                config[prop]
-            except KeyError:
-                raise MinimumDataFailure("Required property, {}, missing".format(prop))
+        self.check_required(config)
+        self.check_allowed(config)
 
     def parse_xml(self, xml_tree):
         """
