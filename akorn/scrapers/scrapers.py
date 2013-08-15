@@ -1,6 +1,9 @@
 import journals
 import logging
 import urlparse
+import pkgutil
+
+from .utils import get_scrapers_folder
 
 logging.basicConfig()
 logger = logging.getLogger('scrapers')
@@ -22,8 +25,14 @@ class Scrapers(object):
         """
         Return list of all of the Scrapers supported
         """
+        modules = []
+
+        # Get the abs path to the journals directory
+        journals = get_scrapers_folder()
         # Find all of the submodules in journals
-        return [getattr(journals, _) for _ in journals.__all__]
+        for module_importer, name, ispkg in pkgutil.iter_modules([journals,]):
+            modules.append(module_importer.find_module(name).load_module(name))
+        return modules
 
     def domain_map(self, scraper_plugins):
         """

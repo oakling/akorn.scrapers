@@ -1,4 +1,4 @@
-from .scrape_meta_tags import scrape_tree as meta_scrape_tree
+from akorn.scrapers.journals.scrape_meta_tags import scrape_tree as meta_scrape_tree
 
 from akorn.scrapers.utils import *
 

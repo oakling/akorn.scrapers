@@ -5,7 +5,7 @@ import lxml.html
 import re
 
 from akorn.scrapers import utils
-from .scrape_meta_tags import scrape as meta_scrape
+from akorn.scrapers.journals.scrape_meta_tags import scrape as meta_scrape
 
 SCRAPER_DOMAINS = ['http://www.cell.com/home']
 

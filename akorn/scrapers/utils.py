@@ -40,7 +40,7 @@ class Ignore401Handler(urllib2.BaseHandler):
     return fp
 
 def get_scrapers_folder():
-    return os.path.dirname(__file__)
+    return os.path.dirname(__file__)+'/journals'
 
 def get_response_chain(req):
   urls = []
