@@ -84,7 +84,7 @@ class Config(object):
         """
         return [key for key in self.unused if key in self.required]
 
-    def check_allowed(self, config):
+    def check_allowed(self):
         """
         Raises BadScraperConfig if unknown properties are found
         """
@@ -101,8 +101,8 @@ class Config(object):
             raise BadScraperConfig("Required properties: {}".format(', '.join(missing)))
 
     def validate(self, config):
-        self.check_required(config)
-        self.check_allowed(config)
+        self.check_required()
+        self.check_allowed()
 
     def parse_xml(self, xml_tree):
         """
