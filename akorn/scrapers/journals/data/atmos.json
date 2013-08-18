@@ -1,0 +1,9 @@
+{
+    "title": [{"type": "metaTag", "value": "citation_title"}],
+    "date_published": [{"type": "metaTag", "value": "citation_publication_date"}],
+    "author_names": [{"type": "metaList", "value": "citation_author"}],
+    "journal": [{"type": "metaTag", "value": "citation_journal_title"}],
+    "abstract": [{"type": "css", "value": "span.pb_abstract", "single": true}],
+    "publisher": [{"type": "metaTag", "value": "citation_publisher"}],
+    "doi": [{"type": "metaTag", "value": "citation_doi"}]
+}
