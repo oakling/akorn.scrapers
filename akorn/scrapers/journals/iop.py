@@ -2,7 +2,6 @@ from akorn.scrapers.base import BaseScraper
 
 class Scraper(BaseScraper):
     # List of feeds that scraper is for
-    # TODO Lots more here: http://www.oxfordjournals.org/subject/mathematics/
     feeds = [
         "http://iopscience.iop.org/1538-3881/?rss=1",
         "http://iopscience.iop.org/1538-4357/?rss=1",
