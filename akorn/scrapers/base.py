@@ -191,7 +191,7 @@ class Config(object):
         """
         found = selector(source, **kwargs)
         # TODO Should be done after down-selection to single
-        cleaned = self.clean_selector_output(found)
+        cleaned = self.clean_selector_output(found, options=lookup)
         try:
             if lookup.get('single'):
                 out = cleaned[0]
@@ -204,11 +204,14 @@ class Config(object):
             return None
         return out
 
-    def clean_selector_output(self, output):
+    def clean_selector_output(self, output, options={}):
         clean = []
         for item in output:
             if isinstance(item, lxml.html.HtmlElement):
-                clean.append(lxml.html.tostring(item))
+                if options.get('text'):
+                    clean.append(item.text_content())
+                else:
+                    clean.append(lxml.html.tostring(item))
             else:
                 clean.append(item)
         return clean
