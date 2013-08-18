@@ -279,6 +279,8 @@ class Config(object):
 
 class BaseScraper(object):
     """Base class for a web scraper"""
+    # Where to find the URL in each feed item
+    feed_tag = 'link'
 
     def __init__(self):
         self.config = self.get_config()

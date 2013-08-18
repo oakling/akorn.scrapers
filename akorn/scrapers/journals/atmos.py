@@ -5,13 +5,7 @@ import time
 
 class Scraper(BaseScraper):
     # List of feeds that scraper is for
-    feeds = [
-                (
-                    "http://www.atmos-chem-phys.net/xml/rss2_0.xml",
-                    "link",
-                    {"minute":1, "hour": "15"},
-                )
-            ]
+    feeds = ["http://www.atmos-chem-phys.net/xml/rss2_0.xml"]
     # List of domains that scraper is for
     domains = ['www.atmos-chem-phys.net']
     # Relative name of config file
