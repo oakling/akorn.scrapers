@@ -1,22 +1,14 @@
 from akorn.scrapers.base import BaseScraper
 
-from datetime import datetime
-import time
-
 class Scraper(BaseScraper):
+    # List of feeds that scraper is for
+    feeds = [
+        'http://rsta.royalsocietypublishing.org/rss/Articles.xml',
+        'http://rstb.royalsocietypublishing.org/rss/Articles.xml'
+        ]
     # List of domains that scraper is for
     domains = [
         'rsta.royalsocietypublishing.org',
         'rstb.royalsocietypublishing.org']
     # Relative name of config file
-    config = 'rst.xml'
-
-    def clean(self, data):
-        data = super(Scraper, self).clean(data)
-
-        # Add a date timestamp based on date_journal
-        date_str = data.get('date_published')
-        if date_str:
-            date_obj = datetime.strptime(date_str, '%Y-%m-%d')
-            data['date_published'] = time.mktime(date_obj.timetuple())
-        return data
+    config = 'rst.json'
