@@ -5,6 +5,7 @@ from lxml.cssselect import CSSSelector
 import os
 import time
 import urllib2
+from dateutil import parser
 
 import akorn.scrapers.utils as utils
 import akorn.scrapers.settings as settings
@@ -355,4 +356,11 @@ class BaseScraper(object):
         return missing
 
     def clean(self, data):
+        # Convert date_published into a timestamp
+        date_str = data.get('date_published')
+        if date_str:
+            # Do fuzzy date parsing
+            date_obj = parser.parse(date_str)
+            # Convert date to timestamp
+            data['date_published'] = time.mktime(date_obj.timetuple())
         return data
