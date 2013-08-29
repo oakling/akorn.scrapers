@@ -362,7 +362,11 @@ class BaseScraper(object):
         date_str = data.get('date_published')
         if date_str:
             # Do fuzzy date parsing
-            date_obj = parser.parse(date_str)
-            # Convert date to timestamp
-            data['date_published'] = time.mktime(date_obj.timetuple())
+            try:
+              date_obj = parser.parse(date_str)
+              # Convert date to timestamp
+              data['date_published'] = time.mktime(date_obj.timetuple())
+            except:
+              data['date_published'] = date_str
+
         return data
