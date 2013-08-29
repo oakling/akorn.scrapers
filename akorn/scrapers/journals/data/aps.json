@@ -1,0 +1,23 @@
+{
+    "title": [
+        {"type": "css", "value": "h1", "single": true, "text": true}
+        ],
+    "date_published": [
+        {"type": "css", "value": "div.bounds > table > tr > td > p", "text": true, "single": true}
+        ],
+    "author_names": [
+        {"type": "css", "value": "div#aps-authors a", "text": true}
+        ],
+    "journal": [
+        {"type": "xPathTag", "value": "//img[@id='banner-image']/@title", "single": true}
+        ],
+    "publisher": [
+        {"type": "xPathTag", "value": "//div[@id='banner-aps']/p/a/img/@title", "single": true}
+        ],
+    "abstract": [
+        {"type": "css", "value": "div.aps-abstractbox > p", "single": true}
+        ],
+    "doi": [
+        {"type": "css", "value": "#aps-article-info div:nth-child(2) div:nth-child(2)"}
+        ]
+}
