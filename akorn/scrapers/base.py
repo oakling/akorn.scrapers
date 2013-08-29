@@ -227,7 +227,7 @@ class Config(object):
         """
         Return callable compiled xpath selector
         """
-        sel = lxml.XPath(lookup.get('value', ''))
+        sel = lxml.etree.XPath(lookup.get('value', ''))
         return self.bind_selector(sel, lookup)
 
     def compile_css(self, lookup):
