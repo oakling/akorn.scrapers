@@ -18,6 +18,7 @@ setup(name='akorn.scrapers',
       packages=find_packages(exclude=['ez_setup']),
       namespace_packages=['akorn'],
       include_package_data=True,
+      package_data={'akorn.scrapers.journals': ['data/*']},
       zip_safe=False,
       install_requires=[
           'setuptools',

@@ -18,6 +18,6 @@
         {"type": "css", "value": "div.aps-abstractbox > p", "single": true}
         ],
     "doi": [
-        {"type": "css", "value": "#aps-article-info div:nth-child(2) div:nth-child(2)"}
+        {"type": "css", "value": "#aps-article-info div:nth-child(2) div:nth-child(2)", "single": true, "text": true}
         ]
 }

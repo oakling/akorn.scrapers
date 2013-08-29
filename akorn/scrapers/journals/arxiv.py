@@ -3,7 +3,7 @@ import re
 import requests
 import time
 
-from akorn.scraper.base import BaseScraper
+from akorn.scrapers.base import BaseScraper
 
 class Scraper(BaseScraper):
     # Should be scraped at 10 past midnight
@@ -57,7 +57,7 @@ class Scraper(BaseScraper):
             'abstract': result.get('summary'),
             'date_revised': time.mktime(result.get('updated_parsed')),
             'date_published': time.mktime(result.get('published_parsed')),
-            'date_scraped': int(time.time())
+            'date_scraped': int(time.time()),
             'arxiv': arxiv_id,
             'source_urls': [self.remove_vNumber(result.get('link'))],
             'journal': 'arxiv:' + result.arxiv_primary_category['term'],
