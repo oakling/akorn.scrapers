@@ -13,13 +13,27 @@ class Scraper(BaseScraper):
              "http://feeds.aps.org/rss/recent/prc.xml",
              "http://feeds.aps.org/rss/recent/prd.xml",
              "http://feeds.aps.org/rss/recent/pre.xml",
-             "http://feeds.aps.org/rss/recent/prx.xml",]
+             "http://feeds.aps.org/rss/recent/prx.xml",
+             "http://feeds.aps.org/rss/recent/rmp.xml",
+             "http://feeds.aps.org/rss/recent/prstab.xml",
+             "http://feeds.aps.org/rss/recent/prstper.xml",]
 
     # Where to find the URL in each feed item
     feed_tag = 'link'
 
     # List of domains that scraper is for
-    domains = ['pra.aps.org', 'prb.aps.org', 'prc.aps.org', 'prd.aps.org', 'pre.aps.org', 'prx.aps.org', 'prl.aps.org', 'prst-ab.aps.org', 'prst-per.aps.org', 'rmp.aps.org', 'prola.aps.org', 'link.aps.org',]
+    domains = ['pra.aps.org',
+               'prb.aps.org',
+               'prc.aps.org',
+               'prd.aps.org',
+               'pre.aps.org',
+               'prx.aps.org',
+               'prl.aps.org',
+               'prst-ab.aps.org',
+               'prst-per.aps.org',
+               'rmp.aps.org',
+               'prola.aps.org',
+               'link.aps.org',]
 
     # Relative name of config file
     config = 'aps.json'
