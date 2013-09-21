@@ -35,7 +35,8 @@ class Config(object):
             'xPathTag': 'compile_xpath',
             'css': 'compile_css',
             'metaTag': 'compile_meta_single',
-            'metaList': 'compile_meta'
+            'metaList': 'compile_meta',
+            'fixed': 'compile_fixed'
         }
     # TODO: Check for required values in config supplied
     required = [
@@ -253,6 +254,14 @@ class Config(object):
             self.meta_xpath_sel,
             lookup,
             name=name.lower())
+
+    def compile_fixed(self, lookup):
+        """
+        Return callable that will return the supplied value
+        """
+        def closure(source):
+            return lookup.get('value', '')
+        return closure
 
     def lookup_value(self, source, firstof, **kwargs):
         """
