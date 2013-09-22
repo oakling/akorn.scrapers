@@ -302,7 +302,8 @@ class BaseScraper(object):
         req = urllib2.Request(url, headers=utils.headers)
         # Open request and follow redirects to final location of content
         # get_response_chain returns a tuple: urls, page
-        return utils.get_response_chain(req)
+        urls, page = utils.get_response_chain(req)
+        return urls, page.read(), page.geturl()
 
     def parse_page(self, content, url):
         """
@@ -318,8 +319,8 @@ class BaseScraper(object):
         Return tuple of lxml Element of given url and urls
         followed to get to the final page.
         """
-        urls, page = self.fetch_url(url)
-        tree = self.parse_page(page.read(), page.geturl())
+        urls, page, page_url = self.fetch_url(url)
+        tree = self.parse_page(page, page_url)
         return tree, urls
 
     def get_config(self):
