@@ -4,6 +4,6 @@
     "title": [{"type": "metaTag", "value": "dc.title" }],
     "author_names": [{"type": "metaList", "value": "dc.creator" }],
     "journal": [{"type": "css", "value": "cite", "single": true, "text": true }],
-    "abstract": [{"type": "metaTag", "value": "dc.description"}],
+    "abstract": [{"type": "css", "value": "p.articleBody_abstractText", "single": true, "text": true}],
     "doi": [{"type": "metaTag", "value": "dc.identifier"}]
 }
