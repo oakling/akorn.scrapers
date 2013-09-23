@@ -363,7 +363,7 @@ class BaseScraper(object):
         utils.walk_and_apply(data, curried_check)
         if missing:
             raise MinimumDataFailure(
-                'Proprties: {}; have no value'.format(', '.join(missing))
+                'Properties: {}; have no value'.format(', '.join(missing))
                 )
         return missing
 
