@@ -51,7 +51,7 @@ class Scraper(BaseScraper):
         # Parse response
         result = feedparser.parse(response.text)['items'][0]
         # Transpose response to the values we need
-        return {
+        data = {
             'title': result.get('title'),
             'author_names': [author.name for author in result.authors],
             'abstract': result.get('summary'),
@@ -61,8 +61,14 @@ class Scraper(BaseScraper):
             'arxiv': arxiv_id,
             'source_urls': [self.remove_vNumber(result.get('link'))],
             'journal': 'arxiv:' + result.arxiv_primary_category['term'],
-            'doi': result.get('arxiv_doi')
         }
+        doi = result.get('arxiv_doi')
+        if doi:
+            data['doi'] = doi
+        return data
+
+    def __init__(self):
+        pass
 
     def scrape_article(self, url):
         # Convert the URL from the feed into an arxiv ID
