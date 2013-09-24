@@ -1,0 +1,23 @@
+{
+    "title": [
+        {"type": "metaTag", "value": "dc.title"}
+        ],
+    "date_published": [
+        {"type": "metaTag", "value": "dc.date"}
+        ],
+    "author_names": [
+        {"type": "metaList", "value": "dc.creator"}
+        ],
+    "journal": [
+        {"type": "metaTag", "value": "citation_journal_title"}
+        ],
+    "abstract": [
+        {"type": "metaTag", "value": "dc.description"}
+        ],
+    "publisher": [
+        {"type": "metaTag", "value": "dc.publisher"}
+        ],
+    "doi": [
+        {"type": "metaTag", "value": "citation_doi"}
+        ]
+}
