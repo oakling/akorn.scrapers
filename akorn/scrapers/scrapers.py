@@ -17,6 +17,7 @@ class Scrapers(object):
     def __init__(self):
         self.modules = self.discover()
         self.domains = dict(self.domain_map(self.modules))
+        self.feeds = self.discover_feeds()
 
         # Add generic scraper, to be used if no match is found
         # TODO Could be an awful design decision?
@@ -33,6 +34,18 @@ class Scrapers(object):
         for module_importer, name, ispkg in pkgutil.iter_modules([journals,]):
             modules.append(module_importer.find_module(name).load_module(name))
         return modules
+
+    def discover_feeds(self):
+        feeds = {}
+
+        for module in self.modules:
+           try:
+               klass = module.Scraper
+	       feeds[module.__name__] = (module.Scraper.feed_tag, module.Scraper.feeds)
+           except Exception, e:
+               print e 
+
+        return feeds
 
     def domain_map(self, scraper_plugins):
         """
