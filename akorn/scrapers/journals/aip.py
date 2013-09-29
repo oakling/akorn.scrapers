@@ -29,7 +29,7 @@ class Scraper(BaseScraper):
     feed_tag = 'link'
 
     # List of domains that scraper is for
-    domains = ['aipadvances.aip.org','aplmaterials.aip.org', 'apl.aip.org', 'bmf.aip.org', 'chaos.aip.org', 'cjcp.aip.org', 'jap.aip.org', 'jcp.aip.org', 'jla.aip.org', 'jmp.aip.org', 'jpcrd.aip.org', 'jrse.aip.org', 'ltp.aip.org', 'pof.aip.org', 'pop.aip.org', 'rsi.aip.org', 'sd.aip.org', 'taml.aip.org', 'apl-oep.aip.org', 'apr.aip.org', 'jcp-bcp.aip.org']
+    domains = ['aipadvances.aip.org','aplmaterials.aip.org', 'apl.aip.org', 'bmf.aip.org', 'chaos.aip.org', 'cjcp.aip.org', 'jap.aip.org', 'jcp.aip.org', 'jla.aip.org', 'jmp.aip.org', 'jpcrd.aip.org', 'jrse.aip.org', 'ltp.aip.org', 'pof.aip.org', 'pop.aip.org', 'rsi.aip.org', 'sd.aip.org', 'taml.aip.org', 'apl-oep.aip.org', 'apr.aip.org', 'jcp-bcp.aip.org', 'link.aip.org']
 
     # Relative name of config file
     config = 'aip.json'
