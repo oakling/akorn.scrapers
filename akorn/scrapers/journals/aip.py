@@ -1,6 +1,6 @@
 from akorn.scrapers.base import BaseScraper
-
 from dateutil import parser
+import datetime
 import time
 
 class Scraper(BaseScraper):
@@ -36,6 +36,10 @@ class Scraper(BaseScraper):
 
     def clean(self, data):
         data['doi'] = data['doi'][4:]
+
+        #2013-09-25
+        year, month, day = map(int, data['date_published'].split('-'))
+        data['date_published'] = time.mktime(datetime.date(year, month, day).timetuple())
 
         return data
 
