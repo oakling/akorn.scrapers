@@ -33,3 +33,9 @@ class Scraper(BaseScraper):
 
     # Relative name of config file
     config = 'aip.json'
+
+    def clean(self, data):
+        data['doi'] = data['doi'][4:]
+
+        return data
+

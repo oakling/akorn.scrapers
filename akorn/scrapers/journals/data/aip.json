@@ -15,7 +15,7 @@
         {"type": "metaTag", "value": "description"}
         ],
     "publisher": [
-        {"type": "metaTag", "value": "citation_publisher"}
+        {"type": "fixed", "value": "AIP Publishing"}
         ],
     "doi": [
         {"type": "metaTag", "value": "citation_doi"}
