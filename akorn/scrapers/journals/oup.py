@@ -1,3 +1,6 @@
+import requests
+from xml.etree import ElementTree
+
 from akorn.scrapers.base import BaseScraper
 
 class Scraper(BaseScraper):
@@ -19,3 +22,20 @@ class Scraper(BaseScraper):
         ]
     # Relative name of config file
     config = 'oup.json'
+
+    def getUrlList(self):
+        """Get the list of urls from:
+        http://www.oxfordjournals.org/help/oxfordjournals.opml.xml"""
+        url_list = []
+        xml_response = requests.get('http://www.oxfordjournals.org/help/oxfordjournals.opml.xml')
+        if xml_response.status_code == 200:
+            xml_parse = ElementTree.fromstring(xml_response.text)
+            for element in xml_parse.iter():
+                if element.attrib.has_key('xmlUrl'):
+                    url_list.append(element.attrib['xmlUrl'])
+        return url_list
+
+if __name__ == "__main__":
+    scraper = Scraper()
+    print scraper.getUrlList()
+
