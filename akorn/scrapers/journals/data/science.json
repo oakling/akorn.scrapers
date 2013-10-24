@@ -12,7 +12,8 @@
         {"type": "metaTag", "value": "citation_journal_title"}
         ],
     "abstract": [
-        {"type": "css", "value": "div.section.abstract p", "single": true}
+        {"type": "css", "value": "div.section.abstract p", "single": true, "text": true},
+        {"type": "xPathTag", "value": "//*[@id='p-2']", "single": true, "text": true}
         ],
     "publisher": [
         {"type": "metaTag", "value": "dc.publisher"}
