@@ -22,6 +22,7 @@ setup(name='akorn.scrapers',
       zip_safe=False,
       install_requires=[
           'setuptools',
+          'requests',
       ],
       entry_points="""
       # -*- Entry points: -*-
