@@ -3,7 +3,7 @@ import logging
 import urlparse
 import pkgutil
 
-from .utils import get_scrapers_folder
+from .utils import get_scrapers_folder, resolve_doi
 
 logging.basicConfig()
 logger = logging.getLogger('scrapers')
@@ -94,6 +94,12 @@ class Scrapers(object):
             url -- str, url for article to scrape
         """
         domain = self.get_domain(url)
+
+        # ruh-oh, doi url, resolve this first
+        if domain == 'dx.doi.org':
+          doi_resolved_url = resolve_doi(url)
+          domain = self.get_domain(doi_resolved_url)
+
         try:
             scrape_method = self.domains[domain]
         except KeyError:

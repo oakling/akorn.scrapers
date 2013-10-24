@@ -305,6 +305,8 @@ class BaseScraper(object):
         # Open request and follow redirects to final location of content
         # get_response_chain returns a tuple: urls, page
         urls, page = utils.get_response_chain(req)
+        
+        urls.append((0,url))
 
         page_content = page.read()
         page_url = page.geturl()
