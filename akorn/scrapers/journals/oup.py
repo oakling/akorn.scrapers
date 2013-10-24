@@ -35,7 +35,6 @@ class Scraper(BaseScraper):
                     url_list.append(element.attrib['xmlUrl'])
         return url_list
 
-if __name__ == "__main__":
-    scraper = Scraper()
-    print scraper.getUrlList()
-
+if name == __main__:
+    import pdb;pdb.set_trace()
+    #return Scraper.getUrlList()
