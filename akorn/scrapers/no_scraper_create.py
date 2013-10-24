@@ -121,5 +121,5 @@ class TestOUPCompare(unittest.TestCase):
 
     #self.assertIsNotNone(article)
 
-if __name__ == '__main__':
-    unittest.main()
+#if __name__ == '__main__':
+#    unittest.main()
