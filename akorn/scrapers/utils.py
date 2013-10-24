@@ -52,8 +52,8 @@ def get_response_chain(req):
 
   code = 200 # Not technically correct
   urls.append((code, response.geturl()))
+  
   return (urls, response)
-
 
 def merge(new_id, old_ids):
     """Try to merge the two database entries."""

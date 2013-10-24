@@ -15,7 +15,7 @@
         {"type": "xPathTag", "value": "//div[@id='banner-aps']/p/a/img/@title", "single": true}
         ],
     "abstract": [
-        {"type": "css", "value": "div.aps-abstractbox > p", "single": true}
+        {"type": "css", "value": "div.aps-abstractbox > p", "single": true, "text": true}
         ],
     "doi": [
         {"type": "css", "value": "#aps-article-info div:nth-child(2) div:nth-child(2)", "single": true, "text": true}

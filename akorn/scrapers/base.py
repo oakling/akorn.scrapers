@@ -1,6 +1,7 @@
 import functools
 import json
 import lxml
+import urlparse
 from lxml.cssselect import CSSSelector
 import os
 import time
@@ -298,12 +299,41 @@ class BaseScraper(object):
         """
         Return tuple of urls followed and the final page grabbed
         """
+
         # Construct request
         req = urllib2.Request(url, headers=utils.headers)
         # Open request and follow redirects to final location of content
         # get_response_chain returns a tuple: urls, page
         urls, page = utils.get_response_chain(req)
-        return urls, page.read(), page.geturl()
+
+        page_content = page.read()
+        page_url = page.geturl()
+
+        # Check for meta refresh tag
+        # <meta http-equiv=refresh content="0; url=/13/10339/2013/acp-13-10339-2013.html">
+
+        if 'http-equiv' in page_content and 'refresh' in page_content:
+          tree = lxml.html.fromstring(page_content)
+
+          try:
+            redirect_url = tree.xpath('.//meta[@http-equiv="refresh"]/@content')[0]
+
+          except IndexError:
+            pass
+
+          else:
+            bits = redirect_url.split(';')
+
+            if len(bits) > 1:
+              url = bits[1].split('=')[1]
+
+              url = urlparse.urljoin(page_url, url)
+
+              # Recurse!
+              iter_urls, page_content, page_url = self.fetch_url(url)
+              urls = urls + iter_urls 
+
+        return urls, page_content, page_url
 
     def parse_page(self, content, url):
         """
@@ -339,6 +369,7 @@ class BaseScraper(object):
         Scrape an html page which is an issue of the journal
         """
         tree, urls = self.get_tree(abstract_url)
+
         # Walk over config, populating from article tree
         article = self.map_tree_to_config(tree, self.config)
         # Add meta data
