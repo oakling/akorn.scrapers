@@ -28,6 +28,7 @@ for module_name, (feed_tag, feed_urls) in feeds:
       item = random.choice(response['items'])
     except IndexError:
       print "      Empty feed."
+      continue
 
     item_url = item[feed_tag]
     

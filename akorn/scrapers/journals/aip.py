@@ -5,40 +5,53 @@ import time
 
 class Scraper(BaseScraper):
     # List of feeds that scraper is for
-    feeds = ['http://aipadvances.aip.org/search_rss?key=AAIDBI&societykey=AIP&coden=AAIDBI&q=+&displayid=AIP&sortby=newestdate&faceted=faceted&sortby=newestdate&CP_Style=false&alias=&searchzone=2&rss=rss&rsstitle=AIP%20Advances:%20ALL%20TOPICS',
-             'http://scitation.aip.org/rss/apl1.xml',
-             'http://scitation.aip.org/rss/bmf.xml',
-             'http://scitation.aip.org/rss/chaos1.xml',
-             'http://scitation.aip.org/rss/jap1.xml',
-             'http://scitation.aip.org/rss/jcp1.xml',
-             'http://jla.aip.org/search_rss?q=&key=JLAPEN&fromvolume=22&fromissue=3&tovolume=present&toissue=present&sortby=newestdate&recordspage=20&rss=rss&rsstitle=Journal%20of%20Laser%20Applications',
-             'http://scitation.aip.org/rss/jmp1.xml',
-             'http://scitation.aip.org/rss/jpcrd1.xml',
-             'http://scitation.aip.org/rss/jrse.xml',
-             'http://scitation.aip.org/rss/ltp1.xml',
-             'http://scitation.aip.org/rss/pof1.xml',
-             'http://scitation.aip.org/rss/php1.xml',
-             'http://scitation.aip.org/rss/rsi1.xml',
-             'http://taml.aip.org/search_rss?q=+&searchtype=searchin&key=TAMLBX&sortby=newestdate&recordspage=25&rss=rss&rsstitle=Theoretical%20and%20Applied%20Mechanics%20Letters%20from%20ALL%20TOPICS',
-             'http://apl-oep.aip.org/search_rss?q=+&searchtype=searchin&searchzone=2&ignoredates=true&key=APLOEP&sortby=newestdate&recordspage=25&possible1=&possible1zone=article&bool1=and&submit1=Search&rss=rss&rsstitle=OEP:%20ALL%20TOPICS',
-             'http://apr.aip.org/search_rss?q=+&searchtype=searchin&searchzone=2&ignoredates=true&key=JAPAPR&sortby=newestdate&recordspage=25&possible1=&possible1zone=article&bool1=and&submit1=Search&rss=rss&rsstitle=APR:%20ALL%20TOPICS',
-             'http://jcp-bcp.aip.org/search_rss?q=+&searchtype=searchin&searchzone=2&ignoredates=true&key=JCPBCP&sortby=newestdate&recordspage=25&possible1=&possible1zone=article&bool1=and&submit1=Search&rss=rss&rsstitle=BCP:%20ALL%20TOPICS',
+    feeds = ['http://scitation.aip.org/rss/content/asa/journal/atdy/latestarticles?fmt=rss',
+'http://scitation.aip.org/rss/content/aip/journal/adva/latestarticles?fmt=rss',
+'http://scitation.aip.org/rss/content/aapt/journal/ajp/latestarticles?fmt=rss',
+'http://scitation.aip.org/rss/content/aip/journal/aplmater/latestarticles?fmt=rss',
+'http://scitation.aip.org/rss/content/aip/journal/aploep/latestarticles?fmt=rss',
+'http://scitation.aip.org/rss/content/aip/journal/apl/latestarticles?fmt=rss',
+'http://scitation.aip.org/rss/content/aip/journal/apr/latestarticles?fmt=rss',
+'http://scitation.aip.org/rss/content/aas/journal/aer/latestarticles?fmt=rss',
+'http://scitation.aip.org/rss/content/aip/journal/bmf/latestarticles?fmt=rss',
+'http://scitation.aip.org/rss/content/aip/journal/chaos/latestarticles?fmt=rss',
+'http://scitation.aip.org/rss/content/cps/journal/cjcp/latestarticles?fmt=rss',
+'http://scitation.aip.org/rss/content/aip/journal/cise/latestarticles?fmt=rss',
+'http://scitation.aip.org/rss/content/asa/journal/jasael/latestarticles?fmt=rss',
+'http://scitation.aip.org/rss/content/aip/journal/jcpbio/latestarticles?fmt=rss',
+'http://scitation.aip.org/rss/content/aip/journal/jap/latestarticles?fmt=rss'
+'http://scitation.aip.org/rss/content/aip/journal/jcp/latestarticles?fmt=rss',
+'http://scitation.aip.org/rss/content/aip/journal/jmp/latestarticles?fmt=rss',
+'http://scitation.aip.org/rss/content/aip/journal/jpcrd/latestarticles?fmt=rss',
+'http://scitation.aip.org/rss/content/aip/journal/jrse/latestarticles?fmt=rss',
+'http://scitation.aip.org/rss/content/sor/journal/jor2/latestarticles?fmt=rss',
+'http://scitation.aip.org/rss/content/asa/journal/jasa/latestarticles?fmt=rss',
+'http://scitation.aip.org/rss/content/avs/journal/jvsta/latestarticles?fmt=rss',
+'http://scitation.aip.org/rss/content/avs/journal/jvstb/latestarticles?fmt=rss',
+'http://scitation.aip.org/rss/content/aip/journal/ltp/latestarticles?fmt=rss',
+'http://scitation.aip.org/rss/content/aapm/journal/medphys/latestarticles?fmt=rss',
+'http://scitation.aip.org/rss/content/aip/journal/pof2/latestarticles?fmt=rss',
+'http://scitation.aip.org/rss/content/aip/journal/pop/latestarticles?fmt=rss',
+'http://scitation.aip.org/rss/content/aapt/journal/tpt/latestarticles?fmt=rss',
+'http://scitation.aip.org/rss/content/asa/journal/poma/latestarticles?fmt=rss',
+'http://scitation.aip.org/rss/content/aip/journal/rsi/latestarticles?fmt=rss',
+'http://scitation.aip.org/rss/content/aca/journal/sdy/latestarticles?fmt=rss',
+'http://scitation.aip.org/rss/content/avs/journal/sss/latestarticles?fmt=rss',
+'http://scitation.aip.org/rss/content/cstam/journal/taml/latestarticles?fmt=rss',
              ]
 
     # Where to find the URL in each feed item
     feed_tag = 'link'
 
     # List of domains that scraper is for
-    domains = ['aipadvances.aip.org','aplmaterials.aip.org', 'apl.aip.org', 'bmf.aip.org', 'chaos.aip.org', 'cjcp.aip.org', 'jap.aip.org', 'jcp.aip.org', 'jla.aip.org', 'jmp.aip.org', 'jpcrd.aip.org', 'jrse.aip.org', 'ltp.aip.org', 'pof.aip.org', 'pop.aip.org', 'rsi.aip.org', 'sd.aip.org', 'taml.aip.org', 'apl-oep.aip.org', 'apr.aip.org', 'jcp-bcp.aip.org', 'link.aip.org']
+    domains = ['aipadvances.aip.org','aplmaterials.aip.org', 'apl.aip.org', 'bmf.aip.org', 'chaos.aip.org', 'cjcp.aip.org', 'jap.aip.org', 'jcp.aip.org', 'jla.aip.org', 'jmp.aip.org', 'jpcrd.aip.org', 'jrse.aip.org', 'ltp.aip.org', 'pof.aip.org', 'pop.aip.org', 'rsi.aip.org', 'sd.aip.org', 'taml.aip.org', 'apl-oep.aip.org', 'apr.aip.org', 'jcp-bcp.aip.org', 'link.aip.org', 'scitation.aip.org']
 
     # Relative name of config file
     config = 'aip.json'
 
     def clean(self, data):
-        data['doi'] = data['doi'][4:]
-
-        #2013-09-25
-        year, month, day = map(int, data['date_published'].split('-'))
+        #2013/09/25
+        year, month, day = map(int, data['date_published'].split('/'))
         data['date_published'] = time.mktime(datetime.date(year, month, day).timetuple())
 
         return data
