@@ -19,7 +19,7 @@ class Scraper(BaseScraper):
 'http://scitation.aip.org/rss/content/aip/journal/cise/latestarticles?fmt=rss',
 'http://scitation.aip.org/rss/content/asa/journal/jasael/latestarticles?fmt=rss',
 'http://scitation.aip.org/rss/content/aip/journal/jcpbio/latestarticles?fmt=rss',
-'http://scitation.aip.org/rss/content/aip/journal/jap/latestarticles?fmt=rss'
+'http://scitation.aip.org/rss/content/aip/journal/jap/latestarticles?fmt=rss',
 'http://scitation.aip.org/rss/content/aip/journal/jcp/latestarticles?fmt=rss',
 'http://scitation.aip.org/rss/content/aip/journal/jmp/latestarticles?fmt=rss',
 'http://scitation.aip.org/rss/content/aip/journal/jpcrd/latestarticles?fmt=rss',
