@@ -6,5 +6,4 @@
     "abstract": [{"type": "metaTag", "value": "dc.description"}],
     "publisher": [{"type": "metaTag", "value": "citation_publisher"}],
     "doi": [{"type": "metaTag", "value": "citation_doi"}],
-    "volume": [{"type": "metaTag", "value": "citation_volume"}]
 }
