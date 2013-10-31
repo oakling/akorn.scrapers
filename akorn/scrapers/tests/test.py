@@ -1,8 +1,8 @@
 import unittest
 import lxml.html
 
-import base
-import utils
+from akorn.scrapers import base
+from akorn.scrapers import utils
 
 class NoConfigScraper(base.BaseScraper):
     def get_config(self):
