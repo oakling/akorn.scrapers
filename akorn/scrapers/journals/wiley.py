@@ -34,10 +34,8 @@ class Scraper(BaseScraper):
 
     def clean(self, article):
         article = super(Scraper, self).clean(article)
+
         # For some reason Wiley appends session ids, that need to be stripped out
         article['source_urls'] = [url.split(';')[0] for url in article.get('source_urls', [])]
-
-        if not article['volume']:
-            del article['volume']
 
         return article
