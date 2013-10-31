@@ -3,7 +3,7 @@
         {"type": "metaTag", "value": "citation_title"}
         ],
     "date_published": [
-        {"type": "metaTag", "value": "citation_date"}
+        {"type": "metaTag", "value": "citation_publication_date"}
         ],
     "author_names": [
         {"type": "metaList", "value": "citation_author"}
@@ -12,10 +12,11 @@
         {"type": "metaTag", "value": "citation_journal_title"}
         ],
     "abstract": [
-        {"type": "metaTag", "value": "description"}
+        {"type": "metaTag", "value": "citation_abstract"},
+        {"type": "xPathTag", "value": ".//div[@class='abstract-container']/p[1]", "single": true, "text": true}
         ],
     "publisher": [
-        {"type": "fixed", "value": "AIP Publishing"}
+        {"type": "metaTag", "value": "citation_publisher"}
         ],
     "doi": [
         {"type": "metaTag", "value": "citation_doi"}

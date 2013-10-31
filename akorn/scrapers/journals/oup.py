@@ -19,6 +19,7 @@ class Scraper(BaseScraper):
         'abbs.oxfordjournals.org',
         'bioinformatics.oxfordjournals.org',
         'biostatistics.oxfordjournals.org',
+        'biomet.oxfordjournals.org',
         ]
     # Relative name of config file
     config = 'oup.json'

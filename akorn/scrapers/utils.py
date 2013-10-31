@@ -7,6 +7,7 @@ import re
 import lxml.html
 import datetime
 import time
+import requests
 
 #this is the helper function file and supercedes comm.py
 months = {'January':1, 'February':2, 'March':3, 'April':4, 'May':5, 'June':6, 'July':7, 'August':8, 'September':9, 'October':10, 'November':11, 'December':12}
@@ -21,6 +22,9 @@ def resolve_article(doc, db):
     return resolve_article(db[doc['merged_into']])
   else:
     return doc
+
+def resolve_doi(doi_url):
+  return requests.get(doi_url).url
 
 # This is code to handle chains of redirects. It records each url we're redirected to.
 class RedirectHandler(urllib2.HTTPRedirectHandler):
@@ -52,8 +56,8 @@ def get_response_chain(req):
 
   code = 200 # Not technically correct
   urls.append((code, response.geturl()))
+  
   return (urls, response)
-
 
 def merge(new_id, old_ids):
     """Try to merge the two database entries."""

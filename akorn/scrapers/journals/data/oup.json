@@ -3,7 +3,7 @@
     "date_published": [{"type": "metaTag", "value": "dc.date"}],
     "author_names": [{"type": "metaList", "value": "dc.contributor"}],
     "journal": [{"type": "metaTag", "value": "citation_journal_title"}],
-    "abstract": [{"type": "css", "value": "div.section p", "single": true}],
+    "abstract": [{"type": "css", "value": "div.section p", "single": true, "text": true}],
     "publisher": [{"type": "metaTag", "value": "dc.publisher"}],
     "doi": [{"type": "metaTag", "value": "citation_doi"}]
 }

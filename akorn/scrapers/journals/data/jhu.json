@@ -3,7 +3,7 @@
     "date_published": [{"type": "css", "value": "div.designation p a:nth-child(4)", "single": true, "text": true}],
     "author_names": [{"type": "metaList", "value": "citation_author"}],
     "journal": [{"type": "metaTag", "value": "citation_journal_title"}],
-    "abstract": [{"type": "css", "value": "abstract p", "single": true}],
+    "abstract": [{"type": "css", "value": "abstract p", "single": true, "text": true}],
     "publisher": [{"type": "metaTag", "value": "citation_publisher"}],
     "doi": [{"type": "metaTag", "value": "citation_doi"}],
     "volume": [{"type": "metaTag", "value": "citation_volume"}]
