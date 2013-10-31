@@ -52,7 +52,8 @@ class Config(object):
         'volume',
         'issue',
         'pages',
-        'publisher'
+        'publisher',
+        'canonical_url',
         ]
 
     def __init__(self, filename=None):
@@ -177,6 +178,7 @@ class Config(object):
                 # Convert it to the standard representation
                 return self.parse_xml(xml_config)
             except lxml.etree.ParseError:
+                print config_file_contents
                 raise BadScraperConfig('Parsing error in config')
 
     # TODO Use of settings constant in method inappropriate
@@ -374,14 +376,23 @@ class BaseScraper(object):
 
         # Walk over config, populating from article tree
         article = self.map_tree_to_config(tree, self.config)
+
         # Add meta data
         article[u'source_urls'] = [uri for _, uri in urls]
+
         # Add scraped datetime (as unix timestamp in seconds)
         article[u'date_scraped'] = int(time.time())
+
         # Run cleaning methods over article data
         cleaned_article = self.clean(article)
+        
+        # Check for a canonical url. If not present, use source urls
+        if 'canonical_url' not in article:
+          article[u'canonical_url'] = article[u'source_urls'][0]
+
         # Check that required data is returned
         self.valid(cleaned_article)
+
         return cleaned_article
 
     def check_value(self, value, key='', missing=[], **kwargs):

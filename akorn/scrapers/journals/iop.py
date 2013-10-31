@@ -61,3 +61,5 @@ class Scraper(BaseScraper):
         ]
     # Relative name of config file
     config = 'iop.json'
+
+

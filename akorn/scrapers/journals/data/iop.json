@@ -5,5 +5,5 @@
     "journal": [{"type": "metaTag", "value": "citation_journal_title"}],
     "abstract": [{"type": "metaTag", "value": "dc.description"}],
     "publisher": [{"type": "metaTag", "value": "citation_publisher"}],
-    "doi": [{"type": "metaTag", "value": "citation_doi"}],
+    "doi": [{"type": "metaTag", "value": "citation_doi"}]
 }

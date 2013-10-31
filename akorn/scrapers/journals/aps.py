@@ -39,6 +39,8 @@ class Scraper(BaseScraper):
     config = 'aps.json'
 
     def clean(self, data):
+        data = super(Scraper, self).clean(data)
+
         date_str = data['date_published']
         
         date_received = re.findall('Received\s+([0-9]+)\s+([A-Za-z]+)\s+([0-9]+)', date_str)

@@ -5,5 +5,6 @@
     "journal": [{"type": "metaTag", "value": "citation_journal_title"}],
     "abstract": [{"type": "css", "value": "#abstract-1 p", "single": true, "text": true}],
     "publisher": [{"type": "metaTag", "value": "dc.publisher"}],
-    "doi": [{"type": "metaTag", "value": "citation_doi"}]
+    "doi": [{"type": "metaTag", "value": "citation_doi"}],
+    "canonical_url": [{"type": "metaTag", "value": "citation_public_url"}]
 }

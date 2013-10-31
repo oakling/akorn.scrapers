@@ -36,6 +36,13 @@ class Scraper(BaseScraper):
                     url_list.append(element.attrib['xmlUrl'])
         return url_list
 
+    def clean(self, data):
+      data = super(Scraper, self).clean(data)
+
+      data['canonical_url'] = data['source_urls'][0].split(u'?')[0]
+
+      return data
+
 if __name__ == "__main__":
     scraper = Scraper()
     print scraper.getUrlList()

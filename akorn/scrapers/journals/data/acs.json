@@ -1,9 +1,60 @@
 {
-    "publisher": [{"type": "metaTag", "value": "dc.publisher"}],
-    "date_published": [{ "type": "metaTag", "value": "dc.date"}],
-    "title": [{"type": "metaTag", "value": "dc.title" }],
-    "author_names": [{"type": "metaList", "value": "dc.creator" }],
-    "journal": [{"type": "css", "value": "cite", "single": true, "text": true }],
-    "abstract": [{"type": "css", "value": "p.articleBody_abstractText", "single": true, "text": true}],
-    "doi": [{"type": "metaTag", "value": "dc.identifier"}]
+    "publisher": [
+        {
+            "type": "metaTag",
+            "value": "dc.publisher"
+        }
+    ],
+    "date_published": [
+        {
+            "type": "metaTag",
+            "value": "dc.date"
+        }
+    ],
+    "title": [
+        {
+            "type": "metaTag",
+            "value": "dc.title"
+        }
+    ],
+    "author_names": [
+        {
+            "type": "metaList",
+            "value": "dc.creator"
+        }
+    ],
+    "journal": [
+        {
+            "type": "css",
+            "value": "cite",
+            "single": true,
+            "text": true
+        }
+    ],
+    "abstract": [
+        {
+            "type": "css",
+            "value": "p.articleBody_abstractText",
+            "single": true,
+            "text": true
+        },
+        {
+            "type": "xPathTag",
+            "value": "//*[@id='articleMain']/div[3]/p",
+            "single": true,
+            "text": true
+        },
+        {
+            "type": "fixed",
+            "value": "No abstract found.",
+            "single": true,
+            "text": true
+        }
+    ],
+    "doi": [
+        {
+            "type": "metaTag",
+            "value": "dc.identifier"
+        }
+    ]
 }

@@ -6,9 +6,18 @@ class Scraper(BaseScraper):
         'http://rsta.royalsocietypublishing.org/rss/Articles.xml',
         'http://rstb.royalsocietypublishing.org/rss/Articles.xml'
         ]
+
     # List of domains that scraper is for
     domains = [
         'rsta.royalsocietypublishing.org',
         'rstb.royalsocietypublishing.org']
+
     # Relative name of config file
     config = 'rst.json'
+
+    def clean(self, data):
+      data = super(Scraper, self).clean(data)
+
+      data['journal'] = data['journal'].replace('\t', '').replace('\n', ' ')
+
+      return data

@@ -52,7 +52,7 @@ class Scraper(BaseScraper):
              'http://feeds.feedburner.com/acs/orgnd7',]
 
     # Where to find the URL in each feed item
-    feed_tag = 'feedburner_origlink'
+    feed_tag = ['feedburner_origlink', 'link']
 
     # List of domains that scraper is for
     domains = ['pubs.acs.org']

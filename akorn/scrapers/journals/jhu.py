@@ -14,10 +14,17 @@ class Scraper(BaseScraper):
     # Relative name of config file
     config = 'jhu.json'
 
-    def clean(self, article):
-        date_str = article.get('date_published')
+    def clean(self, data):
+        data['abstract'] = data['abstract'].strip()
+
+        # date_published doesn't have a day. let's stick the first of the month in.
+        date_str = data.get('date_published')
+
         if date_str:
             _, _, date_str = date_str.split(',')
-            article['date_published'] = '1 '+date_str.strip()
+            data['date_published'] = '1 ' + date_str.strip()
 
-        return super(Scraper, self).clean(article)
+        data['canonical_url'] = data['source_urls'][-1]
+
+        return super(Scraper, self).clean(data)
+

@@ -1,5 +1,5 @@
 {
-    "title": [{"type": "metaTag", "value": "citation_title"}],
+    "title": [{"type": "metaTag", "value": "citation_title", "text": true}],
     "date_published": [{"type": "css", "value": "div.designation p a:nth-child(4)", "single": true, "text": true}],
     "author_names": [{"type": "metaList", "value": "citation_author"}],
     "journal": [{"type": "metaTag", "value": "citation_journal_title"}],

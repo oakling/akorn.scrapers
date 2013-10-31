@@ -30,7 +30,15 @@ for module_name, (feed_tag, feed_urls) in feeds:
       print "      Empty feed."
       continue
 
-    item_url = item[feed_tag]
+    if type(feed_tag) is list:
+      for feed_tag_ in feed_tag:
+        if feed_tag_ in item:
+          item_url = item[feed_tag_]
+          break
+      else:
+        raise Exception("Feed tag(s) not valid.")
+    else:
+      item_url = item[feed_tag]
     
     print "      Scraping url: {}".format(item_url)
 
