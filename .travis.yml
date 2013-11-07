@@ -3,7 +3,7 @@ python:
   - "2.7"
 before_install:
   - git clone https://github.com/oakling/akorn.buildout.git buildout
-  - sudo apt-get install buildout/$(cat ubuntu_requirements)
+  - sudo apt-get install $(cat buildout/ubuntu_requirements)
 install:
   - pip install zc.buildout
   - buildout init
