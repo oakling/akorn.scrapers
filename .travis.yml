@@ -1,0 +1,12 @@
+language: python
+python:
+  - "2.7"
+before_install:
+  - git clone https://github.com/oakling/akorn.buildout.git buildout
+  - sudo apt-get install $(cat buildout/ubuntu_requirements)
+install:
+  - pip install zc.buildout
+  - buildout init
+  - buildout -c buildout/development.cfg
+script:
+  - buildout/bin/nose akorn.scrapers
