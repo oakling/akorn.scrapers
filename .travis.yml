@@ -9,4 +9,4 @@ install:
   - buildout init
   - buildout -c buildout/development.cfg
 script:
-  - bin/nose akorn.scrapers
+  - buildout/bin/nose akorn.scrapers
