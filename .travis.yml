@@ -6,7 +6,7 @@ before_install:
 install:
   - pip install zc.buildout
   - buildout init
-  - git clone https://github.com/oakling/akorn.buildout.git
-  - buildout -c akorn.buildout/development.cfg
+  - git clone https://github.com/oakling/akorn.buildout.git buildout
+  - buildout -c buildout/development.cfg
 script:
   - bin/nose akorn.scrapers
