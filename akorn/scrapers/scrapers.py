@@ -11,29 +11,31 @@ logger = logging.getLogger('scrapers')
 class ScraperNotFound(Exception):
   pass
 
+def discover():
+    """
+    Return list of all of the Scrapers supported
+    """
+    modules = []
+
+    # Get the abs path to the journals directory
+    journals = get_scrapers_folder()
+    # Find all of the submodules in journals
+    for module_importer, name, ispkg in pkgutil.iter_modules([journals,]):
+        modules.append(module_importer.find_module(name).load_module(name))
+
+    return modules
+
+scraper_modules = discover()
 
 class Scrapers(object):
 
     def __init__(self):
-        self.modules = self.discover()
+        self.modules = scraper_modules
         self.domains = dict(self.domain_map(self.modules))
         self.feeds = self.discover_feeds()
 
         # Add generic scraper, to be used if no match is found
         # TODO Could be an awful design decision?
-
-    def discover(self):
-        """
-        Return list of all of the Scrapers supported
-        """
-        modules = []
-
-        # Get the abs path to the journals directory
-        journals = get_scrapers_folder()
-        # Find all of the submodules in journals
-        for module_importer, name, ispkg in pkgutil.iter_modules([journals,]):
-            modules.append(module_importer.find_module(name).load_module(name))
-        return modules
 
     def discover_feeds(self):
         feeds = {}
