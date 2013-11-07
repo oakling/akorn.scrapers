@@ -8,5 +8,7 @@ install:
   - pip install zc.buildout
   - buildout init
   - buildout -c buildout/development.cfg
+before_script:
+  - cd buildout
 script:
-  - buildout/bin/nose akorn.scrapers
+  - bin/nose akorn.scrapers
