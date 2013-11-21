@@ -19,7 +19,7 @@ class Scraper(BaseScraper):
              "http://feeds.aps.org/rss/recent/prstper.xml",]
 
     # Where to find the URL in each feed item
-    feed_tag = 'link'
+    feed_tag = ['link']
 
     # List of domains that scraper is for
     domains = ['pra.aps.org',
