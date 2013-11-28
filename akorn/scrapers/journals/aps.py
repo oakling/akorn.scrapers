@@ -7,16 +7,17 @@ months = {'January':1, 'February':2, 'March':3, 'April':4, 'May':5, 'June':6, 'J
 
 class Scraper(BaseScraper):
     # List of feeds that scraper is for
-    feeds = ["http://feeds.aps.org/rss/recent/prl.xml",
-             "http://feeds.aps.org/rss/recent/pra.xml",
-             "http://feeds.aps.org/rss/recent/prb.xml",
-             "http://feeds.aps.org/rss/recent/prc.xml",
-             "http://feeds.aps.org/rss/recent/prd.xml",
-             "http://feeds.aps.org/rss/recent/pre.xml",
-             "http://feeds.aps.org/rss/recent/prx.xml",
-             "http://feeds.aps.org/rss/recent/rmp.xml",
-             "http://feeds.aps.org/rss/recent/prstab.xml",
-             "http://feeds.aps.org/rss/recent/prstper.xml",]
+    feeds = []
+    #"http://feeds.aps.org/rss/recent/prl.xml",
+    #         "http://feeds.aps.org/rss/recent/pra.xml",
+    #         "http://feeds.aps.org/rss/recent/prb.xml",
+    #         "http://feeds.aps.org/rss/recent/prc.xml",
+    #         "http://feeds.aps.org/rss/recent/prd.xml",
+    #         "http://feeds.aps.org/rss/recent/pre.xml",
+    #         "http://feeds.aps.org/rss/recent/prx.xml",
+    #         "http://feeds.aps.org/rss/recent/rmp.xml",
+    #         "http://feeds.aps.org/rss/recent/prstab.xml",
+    #         "http://feeds.aps.org/rss/recent/prstper.xml",]
 
     # Where to find the URL in each feed item
     feed_tag = ['link']
@@ -39,13 +40,15 @@ class Scraper(BaseScraper):
     config = 'aps.json'
 
     def clean(self, data):
-        data = super(Scraper, self).clean(data)
-
+        print data
         date_str = data['date_published']
-        
+       
+        print type(date_str), date_str 
         date_received = re.findall('Received\s+([0-9]+)\s+([A-Za-z]+)\s+([0-9]+)', date_str)
         date_revised = re.findall('revised\s+([0-9]+)\s+([A-Za-z]+)\s+([0-9]+)', date_str)
         date_published = re.findall('published\s+([0-9]+)\s+([A-Za-z]+)\s+([0-9]+)', date_str)
+        
+        data = super(Scraper, self).clean(data)
 
         def make_datestamp(date_tuple):
           year = int(date_tuple[2])
