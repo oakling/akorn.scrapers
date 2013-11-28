@@ -32,10 +32,24 @@ class Scrapers(object):
     def __init__(self):
         self.modules = scraper_modules
         self.domains = dict(self.domain_map(self.modules))
+        self.module_names = self.discover_module_names()
         self.feeds = self.discover_feeds()
+        self.should_scrape = self.discover_should_scrape()
 
         # Add generic scraper, to be used if no match is found
         # TODO Could be an awful design decision?
+
+    def discover_module_names(self):
+        module_names = {}
+
+        for module in self.modules:
+           try:
+               klass = module.Scraper
+               module_names[module.__name__] = klass()
+           except Exception, e:
+               print e 
+
+        return module_names
 
     def discover_feeds(self):
         feeds = {}
@@ -43,11 +57,26 @@ class Scrapers(object):
         for module in self.modules:
            try:
                klass = module.Scraper
-	       feeds[module.__name__] = (module.Scraper.feed_tag, module.Scraper.feeds)
+               feeds[module.__name__] = (module.Scraper.feed_tag, module.Scraper.feeds)
            except Exception, e:
                print e 
 
         return feeds
+
+    def discover_should_scrape(self):
+        should_scrape = {}
+
+        for module in self.modules:
+           try:
+               klass = module.Scraper
+               if hasattr(klass, 'should_scrape'):
+                 should_scrape[module.__name__] = klass.should_scrape
+               else:
+                 should_scrape[module.__name__] = True
+           except Exception, e:
+               print e 
+      
+        return should_scrape
 
     def domain_map(self, scraper_plugins):
         """
@@ -85,6 +114,9 @@ class Scrapers(object):
         scrape_method = journals.scrape_meta_tags.scrape
         # TODO Move module setting into base scraper
         return scrape_method.__module__, scrape_method
+
+    def resolve_rss_scraper(self, scraper_module):
+      return self.module_names[scraper_module].scrape_rss
 
     def resolve_scraper(self, url):
         """

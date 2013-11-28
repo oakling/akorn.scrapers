@@ -1,3 +1,4 @@
+import iso8601
 from akorn.scrapers.base import BaseScraper
 
 import time, datetime
@@ -5,19 +6,23 @@ import re
 
 months = {'January':1, 'February':2, 'March':3, 'April':4, 'May':5, 'June':6, 'July':7, 'August':8, 'September':9, 'October':10, 'November':11, 'December':12}
 
+def get8601date(s):
+  return time.mktime(iso8601.parse_date(s).timetuple())
+
 class Scraper(BaseScraper):
     # List of feeds that scraper is for
-    feeds = []
-    #"http://feeds.aps.org/rss/recent/prl.xml",
-    #         "http://feeds.aps.org/rss/recent/pra.xml",
-    #         "http://feeds.aps.org/rss/recent/prb.xml",
-    #         "http://feeds.aps.org/rss/recent/prc.xml",
-    #         "http://feeds.aps.org/rss/recent/prd.xml",
-    #         "http://feeds.aps.org/rss/recent/pre.xml",
-    #         "http://feeds.aps.org/rss/recent/prx.xml",
-    #         "http://feeds.aps.org/rss/recent/rmp.xml",
-    #         "http://feeds.aps.org/rss/recent/prstab.xml",
-    #         "http://feeds.aps.org/rss/recent/prstper.xml",]
+    feeds = ["http://feeds.aps.org/rss/recent/prl.xml",
+             "http://feeds.aps.org/rss/recent/pra.xml",
+             "http://feeds.aps.org/rss/recent/prb.xml",
+             "http://feeds.aps.org/rss/recent/prc.xml",
+             "http://feeds.aps.org/rss/recent/prd.xml",
+             "http://feeds.aps.org/rss/recent/pre.xml",
+             "http://feeds.aps.org/rss/recent/prx.xml",
+             "http://feeds.aps.org/rss/recent/rmp.xml",
+             "http://feeds.aps.org/rss/recent/prstab.xml",
+             "http://feeds.aps.org/rss/recent/prstper.xml",]
+
+    should_scrape = False
 
     # Where to find the URL in each feed item
     feed_tag = ['link']
@@ -38,6 +43,19 @@ class Scraper(BaseScraper):
 
     # Relative name of config file
     config = 'aps.json'
+
+    def scrape_rss(self, item):
+        doc = {'publisher': 'American Physical Society',}
+        doc['title'] = item['title']
+        doc['doi'] = item['prism_doi']
+        doc['source_urls'] = [item['link']]
+        doc['canonical_url'] = item['link']
+        doc['journal'] = item['prism_publicationname']
+        doc['date_published'] = get8601date(item['prism_publicationdate'])
+        doc['date_updated'] = time.mktime(item['updated_parsed'])
+        doc['date_scraped'] = int(time.time())
+        doc['author_names'] = [a.replace(' and ', '').strip() for a in item['author'].split(',')]
+        return doc
 
     def clean(self, data):
         print data
