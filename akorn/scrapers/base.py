@@ -400,6 +400,8 @@ class BaseScraper(object):
             missing.append(key)
 
     def valid(self, data):
+        print data
+
         missing = []
         # Curry check_value with container for missing properties
         curried_check = functools.partial(self.check_value, missing=missing)

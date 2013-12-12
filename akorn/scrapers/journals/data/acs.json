@@ -3,24 +3,40 @@
         {
             "type": "metaTag",
             "value": "dc.publisher"
+        },
+        {
+            "type": "metaTag",
+            "value": "dc.Publisher"
         }
     ],
     "date_published": [
         {
             "type": "metaTag",
             "value": "dc.date"
+        },
+        {
+            "type": "metaTag",
+            "value": "dc.Date"
         }
     ],
     "title": [
         {
             "type": "metaTag",
             "value": "dc.title"
+        },
+        {
+            "type": "metaTag",
+            "value": "dc.Title"
         }
     ],
     "author_names": [
         {
             "type": "metaList",
             "value": "dc.creator"
+        },
+        {
+            "type": "metaList",
+            "value": "dc.Creator"
         }
     ],
     "journal": [
@@ -55,6 +71,10 @@
         {
             "type": "metaTag",
             "value": "dc.identifier"
+        },
+        {
+            "type": "metaTag",
+            "value": "dc.Identifier"
         }
     ]
 }
