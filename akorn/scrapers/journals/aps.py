@@ -58,10 +58,8 @@ class Scraper(BaseScraper):
         return doc
 
     def clean(self, data):
-        print data
         date_str = data['date_published']
        
-        print type(date_str), date_str 
         date_received = re.findall('Received\s+([0-9]+)\s+([A-Za-z]+)\s+([0-9]+)', date_str)
         date_revised = re.findall('revised\s+([0-9]+)\s+([A-Za-z]+)\s+([0-9]+)', date_str)
         date_published = re.findall('published\s+([0-9]+)\s+([A-Za-z]+)\s+([0-9]+)', date_str)
